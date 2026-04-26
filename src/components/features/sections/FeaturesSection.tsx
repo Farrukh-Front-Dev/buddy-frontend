@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Users,
@@ -10,25 +10,8 @@ import {
   Sparkles,
   Shield,
 } from 'lucide-react';
-import { useHomeStore } from '../../../store/homeStore';
 
 const FeaturesSection: React.FC = () => {
-  const { setActiveSection } = useHomeStore();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.getElementById('features-section');
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight / 2) {
-          setActiveSection('features');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [setActiveSection]);
 
   const features = [
     {

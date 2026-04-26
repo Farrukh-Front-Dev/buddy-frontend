@@ -1,25 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Heart, MessageSquare, Zap } from 'lucide-react';
-import { useHomeStore } from '../../../store/homeStore';
 
 const AboutSection: React.FC = () => {
-  const { setActiveSection } = useHomeStore();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.getElementById('about-section');
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight / 2) {
-          setActiveSection('about');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [setActiveSection]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

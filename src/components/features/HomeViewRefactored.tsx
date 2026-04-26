@@ -3,7 +3,6 @@ import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import FeaturesSection from './sections/FeaturesSection';
 import CTASection from './sections/CTASection';
-import { useHomeStore } from '../../store/homeStore';
 
 interface HomeViewRefactoredProps {
   onNavigate: (page: string) => void;
@@ -18,7 +17,7 @@ const HomeViewRefactored: React.FC<HomeViewRefactoredProps> = ({
   isRegistrationOpen,
   user,
 }) => {
-  const { scrollProgress, setScrollProgress } = useHomeStore();
+  const [scrollProgress, setScrollProgress] = React.useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +29,7 @@ const HomeViewRefactored: React.FC<HomeViewRefactoredProps> = ({
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [setScrollProgress]);
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden bg-[#0a0a0c]">

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Lock } from 'lucide-react';
-import { useHomeStore } from '../../../store/homeStore';
 
 interface HeroSectionProps {
   onAuthNavigate: (mode: 'login' | 'signup') => void;
@@ -14,11 +13,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   isRegistrationOpen,
   user,
 }) => {
-  const { setActiveSection } = useHomeStore();
-
-  useEffect(() => {
-    setActiveSection('hero');
-  }, [setActiveSection]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,7 +30,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: { duration: 0.8 },
     },
   };
 
