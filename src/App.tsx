@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Loader2, Zap, AlertTriangle, Trash2, CheckCircle, Info } from 'lucide-react';
 import Navbar from './components/layout/Navbar';
-import HomeView from './components/features/HomeView';
+import HomeViewRefactored from './components/features/HomeViewRefactored';
 import Features from './components/features/Features';
 import Team from './components/features/Team';
 import Contact from './components/features/Contact';
@@ -918,7 +918,7 @@ const App: React.FC = () => {
 
       <main className="animate-in fade-in duration-700">
         <Routes>
-          <Route path="/" element={<HomeView onNavigate={handleNavigate} onAuthNavigate={handleNavigateToAuth} isRegistrationOpen={isRegistrationOpen} user={user} />} />
+          <Route path="/" element={<HomeViewRefactored onNavigate={handleNavigate} onAuthNavigate={handleNavigateToAuth} isRegistrationOpen={isRegistrationOpen} user={user} />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/features" element={<div className="pt-20"><Features /></div>} />
           <Route path="/team" element={
