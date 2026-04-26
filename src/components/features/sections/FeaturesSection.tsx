@@ -10,9 +10,10 @@ import {
   Sparkles,
   Shield,
 } from 'lucide-react';
+import GlassCard from '../../common/GlassCard/GlassCard';
+import PrimaryButton from '../../common/PrimaryButton/PrimaryButton';
 
 const FeaturesSection: React.FC = () => {
-
   const features = [
     {
       icon: <Users className="w-6 h-6" />,
@@ -75,7 +76,7 @@ const FeaturesSection: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -90,7 +91,11 @@ const FeaturesSection: React.FC = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-1/2 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl opacity-20" />
+        <motion.div
+          className="absolute bottom-1/2 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl opacity-20"
+          animate={{ y: [0, 30, 0] }}
+          transition={{ duration: 12, repeat: Infinity }}
+        />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,36 +134,33 @@ const FeaturesSection: React.FC = () => {
 
         {/* Features Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="group p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-            >
-              <div
-                className={`w-12 h-12 rounded-lg bg-gradient-to-br ${feature.color} p-2.5 mb-4 text-white group-hover:scale-110 transition-transform`}
-              >
-                {feature.icon}
-              </div>
+            <motion.div key={index} variants={itemVariants}>
+              <GlassCard hover className="p-6 h-full">
+                <div
+                  className={`w-12 h-12 rounded-lg bg-gradient-to-br ${feature.color} p-2.5 mb-4 text-white flex items-center justify-center`}
+                >
+                  {feature.icon}
+                </div>
 
-              <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                {feature.description}
-              </p>
+                <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         {/* CTA */}
         <motion.div
-          className="mt-16 md:mt-24 text-center"
+          className="text-center"
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
@@ -167,9 +169,12 @@ const FeaturesSection: React.FC = () => {
           <p className="text-slate-400 mb-6">
             Barcha bu xususiyatlardan foydalanish uchun Buddy-ga qo'shiling
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+          <PrimaryButton
+            size="lg"
+            color="purple"
+          >
             Batafsil O'rganish
-          </button>
+          </PrimaryButton>
         </motion.div>
       </div>
     </section>

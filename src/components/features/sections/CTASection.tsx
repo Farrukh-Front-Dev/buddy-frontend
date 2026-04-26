@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
+import GlassCard from '../../common/GlassCard/GlassCard';
+import PrimaryButton from '../../common/PrimaryButton/PrimaryButton';
+import Badge from '../../common/Badge/Badge';
 
 interface CTASectionProps {
   onAuthNavigate: (mode: 'login' | 'signup') => void;
@@ -13,19 +16,18 @@ const CTASection: React.FC<CTASectionProps> = ({
   isRegistrationOpen,
   user,
 }) => {
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -49,9 +51,13 @@ const CTASection: React.FC<CTASectionProps> = ({
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl">
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity }}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl opacity-30" />
-        </div>
+        </motion.div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,6 +69,16 @@ const CTASection: React.FC<CTASectionProps> = ({
           viewport={{ once: true, margin: '-100px' }}
         >
           {/* Main CTA */}
+          <motion.div
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-6"
+            variants={itemVariants}
+          >
+            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs font-bold text-indigo-300 uppercase tracking-widest">
+              Bugun Boshlang
+            </span>
+          </motion.div>
+
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 text-white"
             variants={itemVariants}
@@ -99,6 +115,19 @@ const CTASection: React.FC<CTASectionProps> = ({
             ))}
           </motion.div>
 
+          {/* Pricing Card */}
+          <motion.div variants={itemVariants}>
+            <GlassCard accent="indigo" className="p-8 mb-12">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <h3 className="text-3xl font-black text-white">Bepul</h3>
+                <Badge status="active">Hech qanday kredit kartasi kerak emas</Badge>
+              </div>
+              <p className="text-slate-400 mb-6">
+                Barcha xususiyatlardan to'liq foydalaning. Hech qanday to'lov yo'q.
+              </p>
+            </GlassCard>
+          </motion.div>
+
           {/* CTA Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
@@ -106,29 +135,33 @@ const CTASection: React.FC<CTASectionProps> = ({
           >
             {isRegistrationOpen && !user ? (
               <>
-                <button
+                <PrimaryButton
+                  size="lg"
+                  color="indigo"
+                  icon={<ArrowRight className="w-5 h-5" />}
                   onClick={() => onAuthNavigate('signup')}
-                  className="group flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 w-full sm:w-auto"
                 >
-                  <span>Hoziroq Qo'shiling</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                  Hoziroq Qo'shiling
+                </PrimaryButton>
 
-                <button
+                <PrimaryButton
+                  size="lg"
+                  variant="outline"
+                  color="indigo"
                   onClick={() => onAuthNavigate('login')}
-                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/20 transition-all duration-300 backdrop-blur-xl w-full sm:w-auto"
                 >
                   Kirish
-                </button>
+                </PrimaryButton>
               </>
             ) : user ? (
-              <button
+              <PrimaryButton
+                size="lg"
+                color="indigo"
+                icon={<ArrowRight className="w-5 h-5" />}
                 onClick={() => window.location.href = '/dashboard'}
-                className="group flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 w-full sm:w-auto"
               >
-                <span>Dashboardga O'tish</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+                Dashboardga O'tish
+              </PrimaryButton>
             ) : null}
           </motion.div>
 

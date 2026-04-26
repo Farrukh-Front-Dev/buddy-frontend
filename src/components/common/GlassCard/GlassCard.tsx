@@ -4,7 +4,7 @@ interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
-  accent?: 'indigo' | 'emerald' | 'red' | 'amber' | 'purple';
+  accent?: 'indigo' | 'emerald' | 'rose' | 'amber' | 'purple';
   onClick?: () => void;
 }
 
@@ -16,22 +16,23 @@ const GlassCard: React.FC<GlassCardProps> = ({
   onClick,
 }) => {
   const accentColors = {
-    indigo: 'border-indigo-500/20 hover:border-indigo-500/40',
-    emerald: 'border-emerald-500/20 hover:border-emerald-500/40',
-    red: 'border-red-500/20 hover:border-red-500/40',
-    amber: 'border-amber-500/20 hover:border-amber-500/40',
-    purple: 'border-purple-500/20 hover:border-purple-500/40',
+    indigo: 'border-indigo-500/30 hover:border-indigo-500/50',
+    emerald: 'border-emerald-500/30 hover:border-emerald-500/50',
+    rose: 'border-rose-500/30 hover:border-rose-500/50',
+    amber: 'border-amber-500/30 hover:border-amber-500/50',
+    purple: 'border-purple-500/30 hover:border-purple-500/50',
   };
 
-  const baseClasses = 'bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl';
-  const hoverClasses = hover ? 'hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 cursor-pointer' : '';
-  const accentClass = accent ? accentColors[accent] : '';
+  const baseClasses = `
+    bg-white/5 backdrop-blur-xl border border-white/10
+    rounded-2xl transition-all duration-300
+    ${hover ? 'hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 cursor-pointer' : ''}
+    ${accent ? accentColors[accent] : ''}
+    ${className}
+  `;
 
   return (
-    <div
-      className={`${baseClasses} ${hoverClasses} ${accentClass} ${className}`}
-      onClick={onClick}
-    >
+    <div className={baseClasses} onClick={onClick}>
       {children}
     </div>
   );
