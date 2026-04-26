@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import imgArt from '../../buddy_team.jpg';
+import imgArt from '/buddy_team.jpg';
 import { Menu, X, Users, Home, Layout, Mail, Zap, LogIn, LogOut, UserCircle, ShieldAlert, Bell, Activity, Calendar, ChevronDown, User } from 'lucide-react';
 import { Page, UserData } from '../../types';
 

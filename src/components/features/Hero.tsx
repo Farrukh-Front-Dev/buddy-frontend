@@ -1,9 +1,9 @@
 import React from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
 import { UserData } from '../../types';
-import imgCurator from '../../curator.png';
-import imgStudent from '../../student.jpg';
-import imgArt from '../../buddy_team.jpg';
+import imgCurator from '/curator.png';
+import imgStudent from '/student.jpg';
+import imgArt from '/buddy_team.jpg';
 
 interface HeroProps {
   user?: UserData | null;
