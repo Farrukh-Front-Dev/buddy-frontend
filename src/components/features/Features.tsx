@@ -6,9 +6,6 @@ import { FEATURES } from '../../config/constants';
 const Features: React.FC = () => {
   return (
     <section id="features" className="py-24 md:py-32 bg-[#0a0a0c] relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/10 rounded-full blur-[80px] md:blur-[120px] -z-10"></div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 md:mb-24">
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-xl mb-6 border border-indigo-500/20">

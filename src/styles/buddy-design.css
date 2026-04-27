@@ -1,0 +1,469 @@
+/* ============================================
+   BUDDY PLATFORM - UNIQUE DESIGN SYSTEM
+   Soft, Friendly, Warm Design
+   ============================================ */
+
+:root {
+  /* Primary Colors - Indigo-Purple (Trust, Creativity) */
+  --buddy-primary: #4F46E5;
+  --buddy-primary-light: #6366F1;
+  --buddy-primary-dark: #3F35D5;
+
+  /* Secondary Colors - Emerald-Teal (Growth, Harmony) */
+  --buddy-secondary: #10B981;
+  --buddy-secondary-light: #34D399;
+  --buddy-secondary-dark: #059669;
+
+  /* Accent Colors - Amber-Orange (Energy, Warmth) */
+  --buddy-accent: #F59E0B;
+  --buddy-accent-light: #FBBF24;
+  --buddy-accent-dark: #D97706;
+
+  /* Danger Colors - Red-Rose (Caution, Action) */
+  --buddy-danger: #EF4444;
+  --buddy-danger-light: #F87171;
+  --buddy-danger-dark: #DC2626;
+
+  /* Gradients */
+  --buddy-gradient-primary: linear-gradient(135deg, #4F46E5, #A855F7);
+  --buddy-gradient-secondary: linear-gradient(135deg, #10B981, #14B8A6);
+  --buddy-gradient-accent: linear-gradient(135deg, #F59E0B, #F97316);
+  --buddy-gradient-danger: linear-gradient(135deg, #EF4444, #F43F5E);
+
+  /* Neutral Colors */
+  --buddy-light: #F8FAFC;
+  --buddy-medium: #E2E8F0;
+  --buddy-dark: #1E293B;
+  --buddy-darker: #0F172A;
+
+  /* Shadows */
+  --buddy-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --buddy-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --buddy-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --buddy-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.16);
+
+  /* Spacing */
+  --buddy-space-xs: 4px;
+  --buddy-space-sm: 8px;
+  --buddy-space-md: 12px;
+  --buddy-space-lg: 16px;
+  --buddy-space-xl: 24px;
+  --buddy-space-2xl: 32px;
+  --buddy-space-3xl: 48px;
+
+  /* Border Radius */
+  --buddy-radius-sm: 8px;
+  --buddy-radius-md: 12px;
+  --buddy-radius-lg: 16px;
+  --buddy-radius-xl: 24px;
+
+  /* Transitions */
+  --buddy-transition-fast: 0.15s ease-out;
+  --buddy-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --buddy-transition-smooth: 0.5s ease-in-out;
+}
+
+/* ============================================
+   BUDDY CARD - Soft, Friendly
+   ============================================ */
+
+.buddy-card {
+  background-color: white;
+  border-radius: var(--buddy-radius-xl);
+  padding: var(--buddy-space-lg);
+  box-shadow: var(--buddy-shadow-md);
+  transition: all var(--buddy-transition-normal);
+}
+
+.buddy-card:hover {
+  box-shadow: var(--buddy-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.buddy-card-elevated {
+  box-shadow: var(--buddy-shadow-lg);
+}
+
+.buddy-card-elevated:hover {
+  box-shadow: var(--buddy-shadow-xl);
+  transform: translateY(-8px);
+}
+
+.buddy-card-outlined {
+  background-color: transparent;
+  border: 2px solid var(--buddy-medium);
+  box-shadow: none;
+}
+
+.buddy-card-outlined:hover {
+  border-color: var(--buddy-primary);
+  box-shadow: var(--buddy-shadow-sm);
+}
+
+.buddy-card-filled {
+  background-color: var(--buddy-light);
+  box-shadow: var(--buddy-shadow-sm);
+}
+
+.buddy-card-filled:hover {
+  box-shadow: var(--buddy-shadow-md);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .buddy-card {
+    background-color: #1e293b;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .buddy-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .buddy-card-outlined {
+    border-color: #475569;
+  }
+
+  .buddy-card-outlined:hover {
+    border-color: var(--buddy-primary);
+  }
+
+  .buddy-card-filled {
+    background-color: #334155;
+  }
+}
+
+/* ============================================
+   BUDDY BUTTON - Warm, Inviting
+   ============================================ */
+
+.buddy-btn {
+  border-radius: var(--buddy-radius-md);
+  padding: var(--buddy-space-md) var(--buddy-space-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--buddy-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--buddy-space-sm);
+}
+
+.buddy-btn:hover {
+  transform: scale(1.05);
+}
+
+.buddy-btn:active {
+  transform: scale(0.95);
+}
+
+.buddy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Primary Button */
+.buddy-btn-primary {
+  background: var(--buddy-gradient-primary);
+  color: white;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+}
+
+.buddy-btn-primary:hover {
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.4);
+}
+
+/* Secondary Button */
+.buddy-btn-secondary {
+  background: var(--buddy-gradient-secondary);
+  color: white;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.buddy-btn-secondary:hover {
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+}
+
+/* Tertiary Button */
+.buddy-btn-tertiary {
+  background-color: var(--buddy-light);
+  color: var(--buddy-dark);
+  border: 1px solid var(--buddy-medium);
+  box-shadow: none;
+}
+
+.buddy-btn-tertiary:hover {
+  background-color: var(--buddy-medium);
+  box-shadow: var(--buddy-shadow-sm);
+}
+
+/* Danger Button */
+.buddy-btn-danger {
+  background: var(--buddy-gradient-danger);
+  color: white;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.buddy-btn-danger:hover {
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.4);
+}
+
+/* Button Sizes */
+.buddy-btn-sm {
+  padding: var(--buddy-space-sm) var(--buddy-space-md);
+  font-size: 0.875rem;
+}
+
+.buddy-btn-lg {
+  padding: var(--buddy-space-lg) var(--buddy-space-xl);
+  font-size: 1.125rem;
+}
+
+.buddy-btn-full {
+  width: 100%;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .buddy-btn-tertiary {
+    background-color: #334155;
+    color: #f1f5f9;
+    border-color: #475569;
+  }
+
+  .buddy-btn-tertiary:hover {
+    background-color: #475569;
+  }
+}
+
+/* ============================================
+   BUDDY ICON - Playful, Connected
+   ============================================ */
+
+.buddy-icon {
+  border-radius: var(--buddy-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all var(--buddy-transition-normal);
+}
+
+.buddy-icon:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1) translateY(-4px);
+}
+
+/* Icon Sizes */
+.buddy-icon-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.buddy-icon-md {
+  width: 48px;
+  height: 48px;
+}
+
+.buddy-icon-lg {
+  width: 64px;
+  height: 64px;
+}
+
+.buddy-icon-xl {
+  width: 80px;
+  height: 80px;
+}
+
+/* Icon Variants */
+.buddy-icon-primary {
+  background: var(--buddy-gradient-primary);
+}
+
+.buddy-icon-secondary {
+  background: var(--buddy-gradient-secondary);
+}
+
+.buddy-icon-accent {
+  background: var(--buddy-gradient-accent);
+}
+
+.buddy-icon-danger {
+  background: var(--buddy-gradient-danger);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .buddy-icon {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .buddy-icon:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ============================================
+   BUDDY BADGE - Status Indicators
+   ============================================ */
+
+.buddy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--buddy-space-sm);
+  padding: var(--buddy-space-sm) var(--buddy-space-md);
+  border-radius: var(--buddy-radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--buddy-transition-fast);
+}
+
+.buddy-badge-primary {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--buddy-primary);
+  border: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+.buddy-badge-secondary {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--buddy-secondary);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.buddy-badge-accent {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--buddy-accent);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.buddy-badge-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--buddy-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ============================================
+   BUDDY ANIMATIONS
+   ============================================ */
+
+@keyframes buddy-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes buddy-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes buddy-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+}
+
+.buddy-float {
+  animation: buddy-float 3s ease-in-out infinite;
+}
+
+.buddy-pulse {
+  animation: buddy-pulse 2s ease-in-out infinite;
+}
+
+.buddy-glow {
+  animation: buddy-glow 2s ease-out infinite;
+}
+
+/* ============================================
+   BUDDY UTILITIES
+   ============================================ */
+
+.buddy-text-gradient {
+  background: var(--buddy-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.buddy-text-gradient-secondary {
+  background: var(--buddy-gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.buddy-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--buddy-medium),
+    transparent
+  );
+}
+
+.buddy-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--buddy-space-lg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .buddy-card {
+    padding: var(--buddy-space-md);
+  }
+
+  .buddy-btn {
+    padding: var(--buddy-space-sm) var(--buddy-space-md);
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .buddy-card,
+  .buddy-btn,
+  .buddy-icon,
+  .buddy-badge {
+    transition: none;
+  }
+
+  .buddy-float,
+  .buddy-pulse,
+  .buddy-glow {
+    animation: none;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .buddy-card,
+  .buddy-btn,
+  .buddy-icon {
+    box-shadow: none;
+  }
+}

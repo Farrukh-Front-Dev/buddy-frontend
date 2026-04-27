@@ -3,7 +3,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Loader2, Zap, AlertTriangle, Trash2, CheckCircle, Info } from 'lucide-react';
 import Navbar from './components/layout/Navbar';
-import HomeView from './components/features/HomeView';
+import PixelBlast from './components/reactbits/PixelBlast';
+import HomePage from './components/features/home/HomePage';
 import Features from './components/features/Features';
 import Team from './components/features/Team';
 import Contact from './components/features/Contact';
@@ -842,7 +843,33 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-[#0a0a0c]">
-      <Navbar
+      {/* Global PixelBlast Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <PixelBlast
+          variant="square"
+          pixelSize={4}
+          color="#A855F7"
+          patternScale={2.5}
+          patternDensity={0.6}
+          liquid={true}
+          liquidStrength={0.08}
+          liquidRadius={1.2}
+          enableRipples={true}
+          rippleIntensityScale={0.8}
+          rippleThickness={0.12}
+          rippleSpeed={0.25}
+          pixelSizeJitter={0.3}
+          edgeFade={0.3}
+          transparent={true}
+          autoPauseOffscreen={true}
+          speed={0.3}
+          noiseAmount={0.05}
+        />
+      </div>
+      
+      {/* Content Layer */}
+      <div className="relative z-10">
+        <Navbar
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onAuthNavigate={handleNavigateToAuth}
@@ -918,7 +945,7 @@ const App: React.FC = () => {
 
       <main className="animate-in fade-in duration-700">
         <Routes>
-          <Route path="/" element={<HomeView onNavigate={handleNavigate} onAuthNavigate={handleNavigateToAuth} isRegistrationOpen={isRegistrationOpen} user={user} />} />
+          <Route path="/" element={<HomePage onNavigate={handleNavigate} onAuthNavigate={handleNavigateToAuth} isRegistrationOpen={isRegistrationOpen} user={user} />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/features" element={<div className="pt-20"><Features /></div>} />
           <Route path="/team" element={
@@ -1018,6 +1045,7 @@ const App: React.FC = () => {
         </Routes>
       </main>
       <Footer onNavigate={handleNavigate} />
+      </div>
     </div>
   );
 };

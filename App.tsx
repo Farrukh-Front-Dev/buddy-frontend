@@ -13,6 +13,7 @@ import AdminPanel from './components/AdminPanel';
 import Footer from './components/Footer';
 import { StudentProgress, WeeklyHighlight, TeamMember, Season, Notification, Page, UserData } from './types';
 import api, { WS_URL, MEDIA_BASE_URL } from './api';
+// import PixelBlast from './components/reactbits/PixelBlast'; // Inactive
 
 const BuddyStorage = {
   KEYS: {
@@ -841,8 +842,21 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0c]">
-      <Navbar
+    <div 
+      className="relative min-h-screen"
+      style={{
+        backgroundImage: 'url(/temporaryPicforbg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Background overlay */}
+      <div className="fixed inset-0 bg-black/60 pointer-events-none z-0"></div>
+      
+      {/* Content wrapper */}
+      <div className="relative z-10">
+        <Navbar
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onAuthNavigate={handleNavigateToAuth}
@@ -1018,6 +1032,7 @@ const App: React.FC = () => {
         </Routes>
       </main>
       <Footer onNavigate={handleNavigate} />
+      </div>
     </div>
   );
 };

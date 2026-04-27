@@ -3,6 +3,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import './styles/3d-design.css';
+import './styles/buddy-design.css';
 
 // React ilovasini HTML dagi 'root' elementiga ulaymiz
 const container = document.getElementById('root');

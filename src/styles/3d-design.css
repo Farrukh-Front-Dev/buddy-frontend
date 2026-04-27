@@ -1,0 +1,240 @@
+/* ============================================
+   3D SHADOW DESIGN SYSTEM FOR BUDDY PLATFORM
+   ============================================ */
+
+/* Base 3D Shadow - har qanday element uchun */
+.shadow-3d {
+  border: 2px solid #1a1a1a;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease-out;
+}
+
+.shadow-3d:hover {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(2px, 2px);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .shadow-3d {
+    border-color: #4b5563;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .shadow-3d:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Card 3D - hover bilan translate */
+.card-3d {
+  background-color: white;
+  border: 2px solid #1a1a1a;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease-out;
+}
+
+.card-3d:hover {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(2px, 2px);
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-3d {
+    background-color: #2a3442;
+    border-color: #4b5563;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-3d:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Card 3D Static - fixed/sticky elementlar uchun (faqat shadow o'zgaradi) */
+.card-3d-static {
+  background-color: white;
+  border: 2px solid #1a1a1a;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: box-shadow 0.2s ease-out;
+}
+
+.card-3d-static:hover {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  /* NO translate for fixed/sticky elements */
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-3d-static {
+    background-color: #2a3442;
+    border-color: #4b5563;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-3d-static:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Button 3D - gradient background bilan */
+.btn-3d {
+  background: linear-gradient(135deg, #38c9e6 0%, #43e8a0 100%);
+  color: white;
+  border: 2px solid #1a1a1a;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-3d:hover {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(2px, 2px);
+  background: linear-gradient(135deg, #2eb8d5 0%, #32d78f 100%);
+}
+
+.btn-3d:active {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(4px, 4px);
+}
+
+.btn-3d:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-3d {
+    border-color: #4b5563;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-3d:hover {
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-3d:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Legacy support - eski kod uchun */
+.btn-gradient {
+  background: linear-gradient(135deg, #38c9e6 0%, #43e8a0 100%);
+  color: white;
+  border: 2px solid #1a1a1a;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.btn-gradient:hover {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(2px, 2px);
+}
+
+/* Icon 3D container */
+.icon-3d {
+  border: 2px solid #1a1a1a;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease-out;
+}
+
+.icon-3d:hover {
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 1);
+  transform: translate(1px, 1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon-3d {
+    border-color: #4b5563;
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .icon-3d:hover {
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ============================================
+   DARK MODE COLOR PALETTE
+   ============================================ */
+
+:root {
+  --dark-bg: #1e2a38;
+  --dark-bg-secondary: #2a3442;
+  --dark-surface: #34495e;
+  --dark-border: #4b5563;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-bg);
+    color: #e0e0e0;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Full width button */
+.btn-3d-full {
+  width: 100%;
+}
+
+/* Small button */
+.btn-3d-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Large button */
+.btn-3d-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Card with padding variations */
+.card-3d-compact {
+  padding: 1rem;
+}
+
+.card-3d-spacious {
+  padding: 2rem;
+}
+
+/* Icon sizes */
+.icon-3d-sm {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.icon-3d-md {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-3d-lg {
+  width: 4rem;
+  height: 4rem;
+}

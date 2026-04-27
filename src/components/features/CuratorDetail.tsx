@@ -91,11 +91,6 @@ const CuratorDetail: React.FC<CuratorDetailProps> = ({ curator, onClose, student
 
   return (
     <div className="fixed inset-0 z-[110] bg-[#0a0a0c] overflow-y-auto animate-in fade-in duration-300">
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-indigo-600/10 blur-[100px] md:blur-[150px] rounded-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-600/10 blur-[100px] md:blur-[150px] rounded-3xl"></div>
-      </div>
-
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 py-8 md:py-20 min-h-screen">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-12 md:mb-16">
           <button onClick={onClose} className="w-full lg:w-auto flex items-center justify-center space-x-3 text-slate-400 hover:text-white transition-all bg-white/5 px-6 py-3.5 md:py-4 rounded-2xl border border-white/5 group"><ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /><span className="font-bold uppercase text-[9px] md:text-[10px] tracking-widest">Barcha kuratorlar</span></button>
