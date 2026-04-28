@@ -844,26 +844,26 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#0a0a0c]">
       {/* Global PixelBlast Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 0, pointerEvents: 'none' }}>
         <PixelBlast
           variant="square"
           pixelSize={4}
-          color="#A855F7"
-          patternScale={2.5}
-          patternDensity={0.6}
-          liquid={true}
-          liquidStrength={0.08}
-          liquidRadius={1.2}
+          color="#8B5CF6"
+          patternScale={2.2}
+          patternDensity={0.65}
+          liquid={false}
+          liquidStrength={0}
+          liquidRadius={0}
           enableRipples={true}
-          rippleIntensityScale={0.8}
+          rippleIntensityScale={0.9}
           rippleThickness={0.12}
-          rippleSpeed={0.25}
-          pixelSizeJitter={0.3}
-          edgeFade={0.3}
-          transparent={true}
+          rippleSpeed={0.3}
+          pixelSizeJitter={0.25}
+          edgeFade={0.25}
+          transparent={false}
           autoPauseOffscreen={true}
-          speed={0.3}
-          noiseAmount={0.05}
+          speed={0.4}
+          noiseAmount={0}
         />
       </div>
       

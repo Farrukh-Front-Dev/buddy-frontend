@@ -4,6 +4,9 @@ import { UserData } from '../../../types';
 import BuddyButton from '../../common/BuddyButton/BuddyButton';
 import BuddyCard from '../../common/BuddyCard/BuddyCard';
 import BuddyIcon from '../../common/BuddyIcon/BuddyIcon';
+import Card3D from '../../common/Card3D/Card3D';
+import Button3D from '../../common/Button3D/Button3D';
+import Icon3D from '../../common/Icon3D/Icon3D';
 import imgCurator from '/curator.png';
 import imgStudent from '/student.jpg';
 import imgArt from '/buddy_team.jpg';
@@ -61,12 +64,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
               Qo'rqayotgan bo'lsak ham, keling birga qilaylik. Kuratorlar bilan do'stlik orqali o'zini rivojlant.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - 3D Style */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
-              <BuddyButton
+              <Button3D
                 variant="primary"
-                size="lg"
-                icon={<ArrowRight className="w-5 h-5" />}
+                className="py-4 px-8 text-lg"
                 onClick={() => {
                   if (onNavigate) {
                     onNavigate('team');
@@ -75,14 +77,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
                   }
                 }}
               >
+                <ArrowRight className="w-5 h-5" />
                 Kuratorlarni Ko'rish
-              </BuddyButton>
-              <BuddyButton
+              </Button3D>
+              <Button3D
                 variant="secondary"
-                size="lg"
+                className="py-4 px-8 text-lg"
               >
                 Batafsil
-              </BuddyButton>
+              </Button3D>
             </div>
 
             {/* Stats with Secondary Color */}

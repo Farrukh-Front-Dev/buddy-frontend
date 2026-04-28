@@ -13,17 +13,28 @@ const Card3D: React.FC<Card3DProps> = ({
   onClick,
   hover = true,
 }) => {
-  const baseClasses = `
-    bg-white dark:bg-[#2A3442] rounded-3xl p-6
-    border-2 border-gray-900 dark:border-gray-700
-    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)]
-    transition-all duration-200 ease-out
-    ${hover ? 'hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] cursor-pointer' : ''}
-    ${className}
-  `;
-
   return (
-    <div className={baseClasses} onClick={onClick}>
+    <div
+      onClick={onClick}
+      className={`
+        bg-white dark:bg-[#1a1a2e] 
+        rounded-3xl 
+        border-2 border-indigo-600
+        ${hover ? 'hover:translate-x-[2px] hover:translate-y-[2px] cursor-pointer' : ''}
+        transition-all duration-200
+        ${className}
+      `}
+      style={{
+        boxShadow: '4px 4px 0px 0px rgb(79, 70, 229)',
+      }}
+      onMouseEnter={(e) => {
+        if (!hover) return;
+        e.currentTarget.style.boxShadow = '2px 2px 0px 0px rgb(79, 70, 229)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgb(79, 70, 229)';
+      }}
+    >
       {children}
     </div>
   );

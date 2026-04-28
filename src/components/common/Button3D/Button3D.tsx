@@ -1,62 +1,58 @@
 import React from 'react';
-import { Loader2 } from 'lucide-react';
 
 interface Button3DProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: 'gradient' | 'white' | 'outline';
+  variant?: 'primary' | 'secondary' | 'accent' | 'danger';
   fullWidth?: boolean;
-  loading?: boolean;
-  icon?: React.ReactNode;
 }
 
 const Button3D: React.FC<Button3DProps> = ({
   children,
-  variant = 'gradient',
+  variant = 'primary',
   fullWidth = false,
-  loading = false,
-  icon,
-  disabled,
   className = '',
+  disabled = false,
   ...props
 }) => {
-  const variantClasses = {
-    gradient: `
-      bg-gradient-to-br from-[#38C9E6] to-[#43E8A0] text-white
-      hover:from-[#2eb8d5] hover:to-[#32d78f]
-    `,
-    white: `
-      bg-white dark:bg-[#2A3442] text-gray-900 dark:text-white
-      hover:bg-gray-50 dark:hover:bg-[#34495E]
-    `,
-    outline: `
-      bg-transparent border-2 border-gray-900 dark:border-gray-600
-      text-gray-900 dark:text-white
-      hover:bg-gray-100 dark:hover:bg-gray-800
-    `,
+  const gradients = {
+    primary: 'from-emerald-500 to-teal-500',
+    secondary: 'from-amber-400 to-orange-500',
+    accent: 'from-red-500 to-rose-500',
+    danger: 'from-pink-500 to-rose-500',
   };
-
-  const baseClasses = `
-    rounded-2xl px-6 py-3 font-semibold text-lg
-    border-2 border-gray-900 dark:border-gray-700
-    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)]
-    transition-all duration-200 ease-out
-    hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]
-    hover:translate-x-[2px] hover:translate-y-[2px]
-    active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]
-    disabled:opacity-50 disabled:cursor-not-allowed
-    flex items-center justify-center gap-2
-    ${fullWidth ? 'w-full' : ''}
-    ${variantClasses[variant]}
-    ${className}
-  `;
 
   return (
     <button
-      className={baseClasses}
-      disabled={disabled || loading}
+      className={`
+        bg-gradient-to-br ${gradients[variant]}
+        text-white
+        py-4
+        rounded-2xl
+        font-semibold
+        text-lg
+        flex items-center justify-center gap-2
+        border-2 border-indigo-600
+        transition-all
+        duration-200
+        active:scale-95
+        ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+        ${fullWidth ? 'w-full' : ''}
+        ${className}
+      `}
+      style={{
+        boxShadow: '4px 4px 0px 0px rgb(79, 70, 229)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '2px 2px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.transform = 'translate(2px, 2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.transform = 'translate(0, 0)';
+      }}
+      disabled={disabled}
       {...props}
     >
-      {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : icon}
       {children}
     </button>
   );
