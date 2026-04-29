@@ -5,6 +5,9 @@ interface Card3DProps {
   className?: string;
   onClick?: () => void;
   hover?: boolean;
+  borderColor?: string;
+  shadowColor?: string;
+  bgColor?: string;
 }
 
 const Card3D: React.FC<Card3DProps> = ({
@@ -12,27 +15,32 @@ const Card3D: React.FC<Card3DProps> = ({
   className = '',
   onClick,
   hover = true,
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgColor = '',
 }) => {
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
+
   return (
     <div
       onClick={onClick}
       className={`
-        bg-white dark:bg-[#1a1a2e] 
+        ${bgColor || 'bg-slate-900'}
         rounded-3xl 
-        border-2 border-indigo-600
         ${hover ? 'hover:translate-x-[2px] hover:translate-y-[2px] cursor-pointer' : ''}
         transition-all duration-200
         ${className}
       `}
       style={{
-        boxShadow: '4px 4px 0px 0px rgb(79, 70, 229)',
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
       }}
       onMouseEnter={(e) => {
         if (!hover) return;
-        e.currentTarget.style.boxShadow = '2px 2px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
       }}
     >
       {children}

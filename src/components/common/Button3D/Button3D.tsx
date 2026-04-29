@@ -4,6 +4,8 @@ interface Button3DProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'accent' | 'danger';
   fullWidth?: boolean;
+  borderColor?: string;
+  shadowColor?: string;
 }
 
 const Button3D: React.FC<Button3DProps> = ({
@@ -12,26 +14,22 @@ const Button3D: React.FC<Button3DProps> = ({
   fullWidth = false,
   className = '',
   disabled = false,
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
   ...props
 }) => {
-  const gradients = {
-    primary: 'from-emerald-500 to-teal-500',
-    secondary: 'from-amber-400 to-orange-500',
-    accent: 'from-red-500 to-rose-500',
-    danger: 'from-pink-500 to-rose-500',
-  };
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
 
   return (
     <button
       className={`
-        bg-gradient-to-br ${gradients[variant]}
+        bg-slate-900
         text-white
         py-4
         rounded-2xl
         font-semibold
         text-lg
         flex items-center justify-center gap-2
-        border-2 border-indigo-600
         transition-all
         duration-200
         active:scale-95
@@ -40,14 +38,15 @@ const Button3D: React.FC<Button3DProps> = ({
         ${className}
       `}
       style={{
-        boxShadow: '4px 4px 0px 0px rgb(79, 70, 229)',
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '2px 2px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
         e.currentTarget.style.transform = 'translate(2px, 2px)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '4px 4px 0px 0px rgb(79, 70, 229)';
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
         e.currentTarget.style.transform = 'translate(0, 0)';
       }}
       disabled={disabled}

@@ -1,12 +1,10 @@
 import React from 'react';
 import { ArrowRight, Zap, Heart, Sparkles } from 'lucide-react';
 import { UserData } from '../../../types';
-import BuddyButton from '../../common/BuddyButton/BuddyButton';
+import { useTranslation } from '../../../hooks/useTranslation';
 import BuddyCard from '../../common/BuddyCard/BuddyCard';
 import BuddyIcon from '../../common/BuddyIcon/BuddyIcon';
-import Card3D from '../../common/Card3D/Card3D';
 import Button3D from '../../common/Button3D/Button3D';
-import Icon3D from '../../common/Icon3D/Icon3D';
 import imgCurator from '/curator.png';
 import imgStudent from '/student.jpg';
 import imgArt from '/buddy_team.jpg';
@@ -28,6 +26,8 @@ interface HeroSectionProps {
  * - Floating decorative icons
  */
 const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
+  const { t } = useTranslation();
+
   const getHeroImage = () => {
     const defaultImg = imgArt;
     if (!user) return defaultImg;
@@ -47,21 +47,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-full mb-6 md:mb-8 border border-indigo-200 dark:border-indigo-700">
               <Heart className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                Do'stlik • Hamkorlik • O'zaro Yordam
+                {t('hero.badge')}
               </span>
             </div>
 
             {/* Main Heading with Primary Gradient */}
             <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black leading-[1.1] mb-6 md:mb-8 text-slate-900 dark:text-white">
-              Buddy <br />
+              {t('hero.title')} <br />
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                System
+                {t('hero.subtitle')}
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-xl leading-relaxed mx-auto lg:mx-0 font-medium">
-              Qo'rqayotgan bo'lsak ham, keling birga qilaylik. Kuratorlar bilan do'stlik orqali o'zini rivojlant.
+              {t('hero.description')}
             </p>
 
             {/* CTA Buttons - 3D Style */}
@@ -78,29 +78,29 @@ const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
                 }}
               >
                 <ArrowRight className="w-5 h-5" />
-                Kuratorlarni Ko'rish
+                {t('hero.cta_primary')}
               </Button3D>
               <Button3D
                 variant="secondary"
                 className="py-4 px-8 text-lg"
               >
-                Batafsil
+                {t('hero.cta_secondary')}
               </Button3D>
             </div>
 
             {/* Stats with Secondary Color */}
             <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 flex gap-8 justify-center lg:justify-start">
               <div>
-                <p className="text-2xl md:text-3xl font-black text-emerald-600 dark:text-emerald-400">150+</p>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">O'quvchilar</p>
+                <p className="text-2xl md:text-3xl font-black text-emerald-600 dark:text-emerald-400 stats-number">{t('hero.stats.students_count')}</p>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">{t('hero.stats.students')}</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-black text-indigo-600 dark:text-indigo-400">12</p>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">Kuratorlar</p>
+                <p className="text-2xl md:text-3xl font-black text-indigo-600 dark:text-indigo-400 stats-number">{t('hero.stats.curators_count')}</p>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">{t('hero.stats.curators')}</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-black text-amber-600 dark:text-amber-400">500+</p>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">Mashg'ulotlar</p>
+                <p className="text-2xl md:text-3xl font-black text-amber-600 dark:text-amber-400 stats-number">{t('hero.stats.lessons_count')}</p>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">{t('hero.stats.lessons')}</p>
               </div>
             </div>
           </div>

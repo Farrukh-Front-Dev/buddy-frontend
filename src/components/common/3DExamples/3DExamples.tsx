@@ -10,7 +10,7 @@ import { Users, BookOpen, Award, TrendingUp, ArrowRight, Mail, Linkedin, Github 
  */
 
 // Stats Card Example
-export function StatsCard({ label, value, icon: Icon, gradient }: any) {
+export function StatsCard({ label, value, icon: Icon, variant }: any) {
   return (
     <Card3D className="p-6">
       <div className="flex items-start justify-between mb-4">
@@ -22,7 +22,7 @@ export function StatsCard({ label, value, icon: Icon, gradient }: any) {
             {value}
           </p>
         </div>
-        <Icon3D gradient={gradient} size="lg">
+        <Icon3D variant={variant} size="lg">
           <Icon className="w-6 h-6 text-white" />
         </Icon3D>
       </div>
@@ -65,7 +65,7 @@ export function StudentCard({ student }: any) {
             {student.field}
           </p>
         </div>
-        <Icon3D gradient="cyan-blue" size="md">
+        <Icon3D variant="primary" size="md">
           <Users className="w-6 h-6 text-white" />
         </Icon3D>
       </div>
@@ -75,10 +75,10 @@ export function StudentCard({ student }: any) {
       </p>
 
       <div className="flex gap-2">
-        <Button3D variant="gradient" className="flex-1">
+        <Button3D variant="primary" className="flex-1">
           View Profile
         </Button3D>
-        <Button3D variant="outline" className="flex-1">
+        <Button3D variant="secondary" className="flex-1">
           <Mail className="w-4 h-4" />
         </Button3D>
       </div>
@@ -94,7 +94,7 @@ export function CuratorCard({ curator }: any) {
         <img
           src={curator.avatar}
           alt={curator.name}
-          className="w-20 h-20 rounded-2xl mx-auto mb-4 border-2 border-gray-900 dark:border-gray-700"
+          className="w-20 h-20 rounded-2xl mx-auto mb-4 border-2 border-purple-600"
         />
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
           {curator.name}
@@ -109,18 +109,18 @@ export function CuratorCard({ curator }: any) {
       </p>
 
       <div className="flex justify-center gap-2 mb-6">
-        <Icon3D gradient="cyan-blue" size="sm">
+        <Icon3D variant="primary" size="sm">
           <Mail className="w-5 h-5 text-white" />
         </Icon3D>
-        <Icon3D gradient="pink-red" size="sm">
+        <Icon3D variant="secondary" size="sm">
           <Linkedin className="w-5 h-5 text-white" />
         </Icon3D>
-        <Icon3D gradient="purple-indigo" size="sm">
+        <Icon3D variant="accent" size="sm">
           <Github className="w-5 h-5 text-white" />
         </Icon3D>
       </div>
 
-      <Button3D fullWidth variant="gradient">
+      <Button3D fullWidth variant="primary">
         Bog'lanish
       </Button3D>
     </Card3D>
@@ -130,10 +130,10 @@ export function CuratorCard({ curator }: any) {
 // Stats Dashboard Example
 export function StatsDashboard() {
   const stats = [
-    { label: "Total Students", value: "42", icon: Users, gradient: "cyan-blue" },
-    { label: "Active Curators", value: "8", icon: Users, gradient: "pink-red" },
-    { label: "Completed Tasks", value: "156", icon: BookOpen, gradient: "purple-indigo" },
-    { label: "Achievements", value: "23", icon: Award, gradient: "green-emerald" },
+    { label: "Total Students", value: "42", icon: Users, variant: "primary" as const },
+    { label: "Active Curators", value: "8", icon: Users, variant: "secondary" as const },
+    { label: "Completed Tasks", value: "156", icon: BookOpen, variant: "accent" as const },
+    { label: "Achievements", value: "23", icon: Award, variant: "danger" as const },
   ];
 
   return (
@@ -144,7 +144,7 @@ export function StatsDashboard() {
           label={stat.label}
           value={stat.value}
           icon={stat.icon}
-          gradient={stat.gradient}
+          variant={stat.variant}
         />
       ))}
     </div>
@@ -162,37 +162,38 @@ export function ButtonVariantsExample() {
       <div className="space-y-4">
         <div>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-            Gradient (Default)
+            Primary
           </p>
-          <Button3D>Gradient Button</Button3D>
+          <Button3D variant="primary">Primary Button</Button3D>
         </div>
 
         <div>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-            White
+            Secondary
           </p>
-          <Button3D variant="white">White Button</Button3D>
+          <Button3D variant="secondary">Secondary Button</Button3D>
         </div>
 
         <div>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-            Outline
+            Accent
           </p>
-          <Button3D variant="outline">Outline Button</Button3D>
+          <Button3D variant="accent">Accent Button</Button3D>
         </div>
 
         <div>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
             Full Width
           </p>
-          <Button3D fullWidth>Full Width Button</Button3D>
+          <Button3D fullWidth variant="primary">Full Width Button</Button3D>
         </div>
 
         <div>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
             With Icon
           </p>
-          <Button3D icon={<ArrowRight className="w-5 h-5" />}>
+          <Button3D variant="primary" className="gap-2">
+            <ArrowRight className="w-5 h-5" />
             Next Step
           </Button3D>
         </div>
@@ -201,7 +202,7 @@ export function ButtonVariantsExample() {
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
             Disabled
           </p>
-          <Button3D disabled>Disabled Button</Button3D>
+          <Button3D disabled variant="primary">Disabled Button</Button3D>
         </div>
       </div>
     </Card3D>
@@ -210,7 +211,7 @@ export function ButtonVariantsExample() {
 
 // Icon Variants Example
 export function IconVariantsExample() {
-  const gradients = ['cyan-blue', 'pink-red', 'purple-indigo', 'green-emerald'] as const;
+  const variants = ['primary', 'secondary', 'accent', 'danger'] as const;
   const sizes = ['sm', 'md', 'lg'] as const;
 
   return (
@@ -220,14 +221,14 @@ export function IconVariantsExample() {
       </h3>
 
       <div className="space-y-6">
-        {gradients.map((gradient) => (
-          <div key={gradient}>
+        {variants.map((variant) => (
+          <div key={variant}>
             <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
-              {gradient}
+              {variant}
             </p>
             <div className="flex gap-4">
               {sizes.map((size) => (
-                <Icon3D key={size} gradient={gradient} size={size}>
+                <Icon3D key={size} variant={variant} size={size}>
                   <Users className="w-6 h-6 text-white" />
                 </Icon3D>
               ))}

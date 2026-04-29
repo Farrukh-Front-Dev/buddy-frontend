@@ -9,6 +9,9 @@ interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fullWidth?: boolean;
   icon?: React.ReactNode;
   loading?: boolean;
+  borderColor?: string;
+  shadowColor?: string;
+  bgGradient?: string;
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
@@ -21,8 +24,12 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   loading = false,
   disabled,
   className = '',
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgGradient = '',
   ...props
 }) => {
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
@@ -32,34 +39,34 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
   const colorClasses = {
     indigo: {
-      solid: 'bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white',
-      outline: 'border-2 border-indigo-500 text-indigo-400 hover:bg-indigo-500/10',
-      ghost: 'text-indigo-400 hover:bg-indigo-500/10',
+      solid: 'bg-slate-900 hover:bg-slate-800 text-white',
+      outline: 'bg-slate-900 text-white',
+      ghost: 'text-white hover:bg-purple-500/10',
     },
     emerald: {
-      solid: 'bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white',
-      outline: 'border-2 border-emerald-500 text-emerald-400 hover:bg-emerald-500/10',
-      ghost: 'text-emerald-400 hover:bg-emerald-500/10',
+      solid: 'bg-slate-900 hover:bg-slate-800 text-white',
+      outline: 'bg-slate-900 text-white',
+      ghost: 'text-white hover:bg-purple-500/10',
     },
     rose: {
-      solid: 'bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white',
-      outline: 'border-2 border-rose-500 text-rose-400 hover:bg-rose-500/10',
-      ghost: 'text-rose-400 hover:bg-rose-500/10',
+      solid: 'bg-slate-900 hover:bg-slate-800 text-white',
+      outline: 'bg-slate-900 text-white',
+      ghost: 'text-white hover:bg-purple-500/10',
     },
     amber: {
-      solid: 'bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white',
-      outline: 'border-2 border-amber-500 text-amber-400 hover:bg-amber-500/10',
-      ghost: 'text-amber-400 hover:bg-amber-500/10',
+      solid: 'bg-slate-900 hover:bg-slate-800 text-white',
+      outline: 'bg-slate-900 text-white',
+      ghost: 'text-white hover:bg-purple-500/10',
     },
     purple: {
-      solid: 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white',
-      outline: 'border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10',
-      ghost: 'text-purple-400 hover:bg-purple-500/10',
+      solid: 'bg-slate-900 hover:bg-slate-800 text-white',
+      outline: 'bg-slate-900 text-white',
+      ghost: 'text-white hover:bg-purple-500/10',
     },
   };
 
   const baseClasses = `
-    font-bold rounded-xl transition-all duration-300 
+    font-bold rounded-2xl transition-all duration-300 
     active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed
     flex items-center justify-center gap-2
     ${sizeClasses[size]}
@@ -71,6 +78,20 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   return (
     <button
       className={baseClasses}
+      style={variant !== 'ghost' ? {
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+      } : {}}
+      onMouseEnter={(e) => {
+        if (variant === 'ghost') return;
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(2px, 2px)';
+      }}
+      onMouseLeave={(e) => {
+        if (variant === 'ghost') return;
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(0, 0)';
+      }}
       disabled={disabled || loading}
       {...props}
     >

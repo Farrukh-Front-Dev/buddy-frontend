@@ -5,6 +5,9 @@ interface BuddyIconProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'primary' | 'secondary' | 'accent' | 'danger';
   className?: string;
+  borderColor?: string;
+  shadowColor?: string;
+  bgGradient?: string;
 }
 
 const BuddyIcon: React.FC<BuddyIconProps> = ({
@@ -12,7 +15,11 @@ const BuddyIcon: React.FC<BuddyIconProps> = ({
   size = 'md',
   variant = 'primary',
   className = '',
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgGradient = '',
 }) => {
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
   const sizeClasses = {
     sm: 'w-8 h-8',
     md: 'w-12 h-12',
@@ -27,19 +34,31 @@ const BuddyIcon: React.FC<BuddyIconProps> = ({
     danger: 'bg-gradient-to-br from-red-400 to-rose-500',
   };
 
+  const gradient = bgGradient || variantClasses[variant];
+
   const baseClasses = `
-    rounded-xl flex items-center justify-center
-    shadow-[0_4px_16px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.3)]
+    rounded-2xl flex items-center justify-center
     transition-all duration-300
-    hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)]
-    hover:scale-110 hover:-translate-y-1
+    hover:translate-x-[2px] hover:translate-y-[2px]
     ${sizeClasses[size]}
-    ${variantClasses[variant]}
+    ${gradient}
     ${className}
   `;
 
   return (
-    <div className={baseClasses}>
+    <div 
+      className={baseClasses}
+      style={{
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
+      }}
+    >
       {children}
     </div>
   );

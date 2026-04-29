@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Loader2, Zap, AlertTriangle, Trash2, CheckCircle, Info } from 'lucide-react';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/layout/Navbar';
 import PixelBlast from './components/reactbits/PixelBlast';
 import HomePage from './components/features/home/HomePage';
@@ -842,7 +843,8 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0c]">
+    <LanguageProvider>
+      <div className="relative min-h-screen bg-[#0a0a0c]">
       {/* Global PixelBlast Background */}
       <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 0, pointerEvents: 'none' }}>
         <PixelBlast
@@ -1047,6 +1049,7 @@ const App: React.FC = () => {
       <Footer onNavigate={handleNavigate} />
       </div>
     </div>
+    </LanguageProvider>
   );
 };
 

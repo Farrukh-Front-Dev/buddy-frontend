@@ -10,6 +10,65 @@ body {
     overflow-x: hidden;
 }
 
+/* Heading Styles - Global */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Stats and Numbers */
+.font-mono, .stats-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+}
+
+/* Button Text */
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Card Titles */
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Badge Text */
+.badge-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+/* Utility Classes */
+.text-display {
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
 /* Responsive Utilities */
 .no-scrollbar {
     -ms-overflow-style: none;

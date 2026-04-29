@@ -16,6 +16,11 @@ module.exports = {
         'dark-surface': '#34495E',
         'dark-border': '#4B5563',
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
     },
   },
   plugins: [],

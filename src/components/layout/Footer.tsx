@@ -1,70 +1,109 @@
-
 import React from 'react';
 import { Instagram, Facebook, Youtube, Zap, MapPin, Phone, Mail } from 'lucide-react';
 import { Page } from '../../types';
+import { useTranslation } from '../../hooks/useTranslation';
+import Icon3D from '../common/Icon3D/Icon3D';
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
+  const shadowColor = 'rgb(168, 85, 247)';
+  const borderColor = 'rgb(79, 70, 229)';
+
   return (
-    <footer className="bg-[#050505] border-t border-white/5 pt-14 md:pt-20 pb-8 md:pb-10">
+    <footer className="bg-slate-950 pt-12 md:pt-16 pb-6 md:pb-8 rounded-t-3xl border-t-2 border-l-2 border-r-2" style={{ borderColor: 'rgb(79, 70, 229)', boxShadow: `0 -4px 0px 0px rgb(168, 85, 247)` }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-16">
-          {/* Logo & About */}
-          <div className="col-span-2 md:col-span-2 lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-5">
-              <div className="p-2.5 md:p-3 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-[10px]">
-                <Zap className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </div>
-              <span className="text-xl md:text-2xl font-black tracking-tight">Buddy<span className="text-purple-500">Team</span></span>
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-10">
+          {/* Logo & Social */}
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <Icon3D variant="primary" size="sm">
+                <Zap className="w-4 h-4 text-white" />
+              </Icon3D>
+              <h3 className="text-lg font-black">
+                Buddy<span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Team</span>
+              </h3>
             </div>
-            <p className="text-slate-500 text-sm leading-relaxed mb-6">
-              Bizning logotimizdagi mushuk va kuchukcha kabi biz ham bir-birimizga va sizga tayanchmiz. Birgalikda eng yaxshi natijalarga erishamiz!
+            <p className="text-slate-500 text-xs leading-relaxed mb-4 max-w-xs">
+              {t('footer.tagline')}
             </p>
-            <div className="flex space-x-3">
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] bg-white/5 flex items-center justify-center text-white hover:bg-purple-600 transition-all border border-white/5"><Instagram className="w-4 h-4 md:w-5 md:h-5 text-white" /></a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] bg-white/5 flex items-center justify-center text-white hover:bg-purple-600 transition-all border border-white/5"><Facebook className="w-4 h-4 md:w-5 md:h-5 text-white" /></a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] bg-white/5 flex items-center justify-center text-white hover:bg-purple-600 transition-all border border-white/5"><Youtube className="w-4 h-4 md:w-5 md:h-5 text-white" /></a>
+            <div className="flex space-x-2">
+              {[Instagram, Facebook, Youtube].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center text-white transition-all duration-200 hover:translate-x-[1px] hover:translate-y-[1px]"
+                  style={{
+                    border: `2px solid ${borderColor}`,
+                    boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `1px 1px 0px 0px ${shadowColor}`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Links */}
           <div>
-            <h4 className="text-white font-black uppercase text-xs tracking-widest mb-5 md:mb-8">Navigatsiya</h4>
-            <ul className="space-y-3 md:space-y-4">
-              <li><button onClick={() => onNavigate('home')} className="text-slate-400 text-sm hover:text-purple-400 transition-colors">Asosiy sahifa</button></li>
-              <li><button onClick={() => onNavigate('features')} className="text-slate-400 text-sm hover:text-purple-400 transition-colors">Xizmatlarimiz</button></li>
-              <li><button onClick={() => onNavigate('team')} className="text-slate-400 text-sm hover:text-purple-400 transition-colors">Bizning kuratorlar</button></li>
-              <li><button onClick={() => onNavigate('contact')} className="text-slate-400 text-sm hover:text-purple-400 transition-colors">Bog'lanish</button></li>
+            <h4 className="text-white font-black text-xs uppercase tracking-wider mb-4">{t('footer.nav_title')}</h4>
+            <ul className="space-y-2">
+              {[
+                { label: t('footer.nav_home'), page: 'home' },
+                { label: t('footer.nav_features'), page: 'features' },
+                { label: t('footer.nav_team'), page: 'team' },
+                { label: t('footer.nav_contact'), page: 'contact' },
+              ].map((link, i) => (
+                <li key={i}>
+                  <button
+                    onClick={() => onNavigate(link.page as Page)}
+                    className="text-slate-400 text-xs hover:text-indigo-400 transition-colors font-medium"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-white font-black uppercase text-xs tracking-widest mb-5 md:mb-8">Siz uchun</h4>
-            <ul className="space-y-3 md:space-y-4">
-              <li className="flex items-start space-x-2 md:space-x-3">
-                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-indigo-500 shrink-0 mt-0.5" />
-                <span className="text-slate-500 text-sm">Samarqand shahar, Ibn Sino ko'chasi 17A</span>
+            <h4 className="text-white font-black text-xs uppercase tracking-wider mb-4">{t('footer.contact_title')}</h4>
+            <ul className="space-y-2 text-xs">
+              <li className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4 text-indigo-500 shrink-0" />
+                <span className="text-slate-400">{t('footer.address')}</span>
               </li>
-              <li className="flex items-center space-x-2 md:space-x-3">
-                <Phone className="w-4 h-4 md:w-5 md:h-5 text-indigo-500 shrink-0" />
-                <span className="text-slate-500 text-sm">998930394442</span>
+              <li className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-indigo-500 shrink-0" />
+                <a href="tel:998930394442" className="text-slate-400 hover:text-indigo-400 transition-colors">
+                  +998 93 039 44 42
+                </a>
               </li>
-              <li className="flex items-center space-x-2 md:space-x-3">
-                <Mail className="w-4 h-4 md:w-5 md:h-5 text-indigo-500 shrink-0" />
-                <span className="text-slate-500 text-sm">samarqand@21-school.uz</span>
+              <li className="flex items-center space-x-2">
+                <Mail className="w-4 h-4 text-indigo-500 shrink-0" />
+                <a href="mailto:samarqand@21-school.uz" className="text-slate-400 hover:text-indigo-400 transition-colors">
+                  samarqand@21-school.uz
+                </a>
               </li>
             </ul>
           </div>
-
         </div>
 
-        <div className="pt-8 md:pt-10 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-slate-600 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-center">
-            © {new Date().getFullYear()} Buddy System. Barcha huquqlar himoyalangan.
+        {/* Bottom */}
+        <div className="pt-6 md:pt-8 border-t border-slate-800 text-center">
+          <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider">
+            {t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
           </p>
         </div>
       </div>

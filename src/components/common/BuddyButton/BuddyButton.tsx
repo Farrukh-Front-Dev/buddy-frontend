@@ -8,6 +8,9 @@ interface BuddyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
   fullWidth?: boolean;
   loading?: boolean;
   icon?: React.ReactNode;
+  borderColor?: string;
+  shadowColor?: string;
+  bgGradient?: string;
 }
 
 const BuddyButton: React.FC<BuddyButtonProps> = ({
@@ -19,35 +22,36 @@ const BuddyButton: React.FC<BuddyButtonProps> = ({
   icon,
   disabled,
   className = '',
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgGradient = '',
   ...props
 }) => {
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
   const variantClasses = {
     primary: `
-      bg-gradient-to-r from-indigo-500 to-purple-500
-      hover:from-indigo-600 hover:to-purple-600
+      bg-slate-900
+      hover:bg-slate-800
       text-white
-      shadow-[0_4px_20px_rgba(79,70,229,0.3)]
-      hover:shadow-[0_8px_32px_rgba(79,70,229,0.4)]
+      active:scale-95
     `,
     secondary: `
-      bg-gradient-to-r from-emerald-500 to-teal-500
-      hover:from-emerald-600 hover:to-teal-600
+      bg-slate-900
+      hover:bg-slate-800
       text-white
-      shadow-[0_4px_20px_rgba(16,185,129,0.3)]
-      hover:shadow-[0_8px_32px_rgba(16,185,129,0.4)]
+      active:scale-95
     `,
     tertiary: `
-      bg-slate-100 dark:bg-slate-700
-      hover:bg-slate-200 dark:hover:bg-slate-600
-      text-slate-900 dark:text-white
-      border border-slate-200 dark:border-slate-600
+      bg-slate-900
+      hover:bg-slate-800
+      text-white
+      active:scale-95
     `,
     danger: `
-      bg-gradient-to-r from-red-500 to-rose-500
-      hover:from-red-600 hover:to-rose-600
+      bg-slate-900
+      hover:bg-slate-800
       text-white
-      shadow-[0_4px_20px_rgba(239,68,68,0.3)]
-      hover:shadow-[0_8px_32px_rgba(239,68,68,0.4)]
+      active:scale-95
     `,
   };
 
@@ -57,14 +61,15 @@ const BuddyButton: React.FC<BuddyButtonProps> = ({
     lg: 'px-8 py-4 text-lg',
   };
 
+  const gradient = bgGradient || variantClasses[variant];
+
   const baseClasses = `
-    rounded-xl font-semibold
+    rounded-2xl font-semibold
     transition-all duration-300 ease-out
-    hover:scale-105 active:scale-95
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+    disabled:opacity-50 disabled:cursor-not-allowed
     flex items-center justify-center gap-2
     ${sizeClasses[size]}
-    ${variantClasses[variant]}
+    ${gradient}
     ${fullWidth ? 'w-full' : ''}
     ${className}
   `;
@@ -72,6 +77,18 @@ const BuddyButton: React.FC<BuddyButtonProps> = ({
   return (
     <button
       className={baseClasses}
+      style={{
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(2px, 2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(0, 0)';
+      }}
       disabled={disabled || loading}
       {...props}
     >

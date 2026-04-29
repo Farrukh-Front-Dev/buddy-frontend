@@ -6,6 +6,9 @@ interface BuddyCardProps {
   onClick?: () => void;
   variant?: 'default' | 'elevated' | 'outlined' | 'filled';
   color?: 'primary' | 'secondary' | 'accent' | 'danger';
+  borderColor?: string;
+  shadowColor?: string;
+  bgColor?: string;
 }
 
 const BuddyCard: React.FC<BuddyCardProps> = ({
@@ -13,40 +16,44 @@ const BuddyCard: React.FC<BuddyCardProps> = ({
   className = '',
   onClick,
   variant = 'default',
-  color = 'primary',
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgColor = '',
 }) => {
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
   const variantClasses = {
     default: `
-      bg-white dark:bg-slate-800
-      shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]
-      hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)]
-      hover:-translate-y-1 transition-all duration-300
+      ${bgColor || 'bg-slate-900'}
+      border-2
+      shadow-[4px_4px_0px_0px_rgb(168,85,247)]
+      hover:shadow-[2px_2px_0px_0px_rgb(168,85,247)]
+      hover:translate-x-[2px] hover:translate-y-[2px]
+      transition-all duration-300
     `,
     elevated: `
-      bg-white dark:bg-slate-800
-      shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]
-      hover:shadow-[0_12px_48px_rgba(0,0,0,0.16)] dark:hover:shadow-[0_12px_48px_rgba(0,0,0,0.5)]
-      hover:-translate-y-2 transition-all duration-300
+      ${bgColor || 'bg-slate-900'}
+      border-2
+      shadow-[4px_4px_0px_0px_rgb(168,85,247)]
+      hover:shadow-[2px_2px_0px_0px_rgb(168,85,247)]
+      hover:translate-x-[2px] hover:translate-y-[2px]
+      transition-all duration-300
     `,
     outlined: `
       bg-transparent
-      border-2 border-slate-200 dark:border-slate-700
-      hover:border-slate-300 dark:hover:border-slate-600
+      border-2
+      shadow-[4px_4px_0px_0px_rgb(168,85,247)]
+      hover:shadow-[2px_2px_0px_0px_rgb(168,85,247)]
+      hover:translate-x-[2px] hover:translate-y-[2px]
       transition-all duration-300
     `,
     filled: `
-      bg-slate-50 dark:bg-slate-700
-      shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.2)]
-      hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.3)]
+      ${bgColor || 'bg-slate-800'}
+      border-2
+      shadow-[4px_4px_0px_0px_rgb(168,85,247)]
+      hover:shadow-[2px_2px_0px_0px_rgb(168,85,247)]
+      hover:translate-x-[2px] hover:translate-y-[2px]
       transition-all duration-300
     `,
-  };
-
-  const colorClasses = {
-    primary: 'border-indigo-200 dark:border-indigo-700',
-    secondary: 'border-emerald-200 dark:border-emerald-700',
-    accent: 'border-amber-200 dark:border-amber-700',
-    danger: 'border-red-200 dark:border-red-700',
   };
 
   const baseClasses = `
@@ -54,12 +61,26 @@ const BuddyCard: React.FC<BuddyCardProps> = ({
     transition-all duration-300
     ${onClick ? 'cursor-pointer' : ''}
     ${variantClasses[variant]}
-    ${variant === 'outlined' ? colorClasses[color] : ''}
     ${className}
   `;
 
   return (
-    <div className={baseClasses} onClick={onClick}>
+    <div 
+      className={baseClasses} 
+      onClick={onClick}
+      style={{
+        borderColor: finalBorderColor,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(2px, 2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = `4px 4px 0px 0px ${shadowColor}`;
+        e.currentTarget.style.transform = 'translate(0, 0)';
+      }}
+    >
       {children}
     </div>
   );

@@ -2,22 +2,28 @@ import React from 'react';
 
 interface Icon3DProps {
   children: React.ReactNode;
-  gradient?: 'indigo-purple' | 'emerald-teal' | 'amber-orange' | 'red-rose';
+  variant?: 'primary' | 'secondary' | 'accent' | 'danger';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  borderColor?: string;
+  shadowColor?: string;
+  bgGradient?: string;
 }
 
 const Icon3D: React.FC<Icon3DProps> = ({
   children,
-  gradient = 'indigo-purple',
+  variant = 'primary',
   size = 'md',
   className = '',
+  borderColor,
+  shadowColor = 'rgb(168, 85, 247)',
+  bgGradient = '',
 }) => {
   const gradientClasses = {
-    'indigo-purple': 'bg-gradient-to-br from-indigo-600 to-purple-600',
-    'emerald-teal': 'bg-gradient-to-br from-emerald-500 to-teal-500',
-    'amber-orange': 'bg-gradient-to-br from-amber-400 to-orange-500',
-    'red-rose': 'bg-gradient-to-br from-red-500 to-rose-500',
+    primary: 'bg-gradient-to-br from-indigo-600 to-purple-600',
+    secondary: 'bg-gradient-to-br from-emerald-500 to-teal-500',
+    accent: 'bg-gradient-to-br from-amber-400 to-orange-500',
+    danger: 'bg-gradient-to-br from-red-500 to-rose-500',
   };
 
   const sizeClasses = {
@@ -27,18 +33,22 @@ const Icon3D: React.FC<Icon3DProps> = ({
     xl: 'w-20 h-20',
   };
 
+  const gradient = bgGradient || gradientClasses[variant];
+  const finalBorderColor = borderColor || 'rgb(79, 70, 229)';
+
   return (
     <div
       className={`
         ${sizeClasses[size]}
-        ${gradientClasses[gradient]}
+        ${gradient}
         rounded-2xl
         flex items-center justify-center
-        border-2 border-gray-900 dark:border-gray-700
-        shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)]
-        dark:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]
         ${className}
       `}
+      style={{
+        border: `2px solid ${finalBorderColor}`,
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+      }}
     >
       {children}
     </div>
