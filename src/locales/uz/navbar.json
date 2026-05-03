@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Asosiy",
+    "features": "Xizmatlar",
+    "team": "Kuratorlar",
+    "contact": "Bog'lanish",
+    "stats": "Statistika",
+    "monitoring": "Monitoring",
+    "users": "Foydalanuvchilar",
+    "requests": "So'rovlar",
+    "seasons": "Mavsumlar",
+    "messages": "Xabarlar",
+    "profile": "Profil",
+    "notifications": "Bildirishnomalar",
+    "login": "Kirish",
+    "signup": "Ro'yxatdan o'tish"
+  }
+}

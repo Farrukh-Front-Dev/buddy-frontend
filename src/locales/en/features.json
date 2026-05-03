@@ -1,0 +1,23 @@
+{
+  "title": "Our",
+  "title_highlight": "Strengths",
+  "description": "Our team considers individual work with each student and quality results as the main goal.",
+  "items": {
+    "innovation": {
+      "title": "Innovation",
+      "description": "Modern solutions with the latest technologies."
+    },
+    "teamwork": {
+      "title": "Teamwork",
+      "description": "Every Buddy team member's contribution is valued."
+    },
+    "speed": {
+      "title": "Speed",
+      "description": "We deliver quality results in short timeframes."
+    },
+    "global": {
+      "title": "Global Coverage",
+      "description": "Our projects serve users worldwide."
+    }
+  }
+}

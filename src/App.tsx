@@ -9,8 +9,8 @@ import HomePage from './components/features/home/HomePage';
 import Features from './components/features/Features';
 import Team from './components/features/Team';
 import Contact from './components/features/Contact';
-import AuthPage from './components/features/AuthPage';
-import Dashboard from './components/features/Dashboard';
+import AuthPage from './components/features/auth/AuthPage';
+import Dashboard from './components/features/dashboard';
 import AdminPanel from './components/features/AdminPanel';
 import Footer from './components/layout/Footer';
 import { StudentProgress, WeeklyHighlight, TeamMember, Season, Notification, Page, UserData } from './types';
@@ -863,7 +863,7 @@ const App: React.FC = () => {
           pixelSizeJitter={0.25}
           edgeFade={0.25}
           transparent={false}
-          autoPauseOffscreen={true}
+          autoPauseOffscreen={false}
           speed={0.4}
           noiseAmount={0}
         />

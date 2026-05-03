@@ -1,47 +1,110 @@
-
 import React from 'react';
-import { Zap } from 'lucide-react';
-import { FEATURES } from '../../config/constants';
+import { useTranslation } from '../../hooks/useTranslation';
+import { FEATURES_DATA } from '../../config/featuresData';
+import Card3D from '../common/Card3D/Card3D';
+import Icon3D from '../common/Icon3D/Icon3D';
 
+/**
+ * Features Section - Platform Strengths
+ * 
+ * Displays:
+ * - Section heading with gradient
+ * - Feature cards with icons
+ * - Hover animations and 3D styling
+ * - Fully responsive grid layout
+ * - Multi-language support (UZ, RU, EN)
+ */
 const Features: React.FC = () => {
+  const { t } = useTranslation();
+  const shadowColor = 'rgb(168, 85, 247)';
+  const borderColor = 'rgb(79, 70, 229)';
+
   return (
-    <section id="features" className="py-24 md:py-32 bg-[#0a0a0c] relative overflow-hidden">
+    <section id="features" className="py-16 sm:py-20 md:py-28 lg:py-36 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 md:mb-24">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-xl mb-6 border border-indigo-500/20">
-            <Zap className="w-4 h-4 text-indigo-400" />
-            <span className="text-[10px] md:text-xs font-black text-indigo-300 uppercase tracking-widest">Nega aynan biz?</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-8 text-white tracking-tighter">
-            Bizning <span className="bg-gradient-to-br from-[#60a5fa] to-[#a855f7] bg-clip-text text-transparent underline decoration-indigo-500/30 underline-offset-8">Ustunliklarimiz</span>
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
+            {t('features.title')} <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              {t('features.title_highlight')}
+            </span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-lg font-medium">
-            Jamoamiz har bir talaba bilan individual ishlash va sifatli natija ko'rsatishni asosiy maqsad deb biladi.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+            {t('features.description')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {FEATURES.map((feature, idx) => (
-            <div
-              key={idx}
-              className="group p-8 md:p-10 bg-white/[0.03] backdrop-blur-[12px] border border-white/5 rounded-[2.5rem] hover:bg-white/[0.07] hover:border-indigo-500/30 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-              <div className="relative z-10">
-                <div className="w-14 h-14 md:w-16 md:h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all duration-500 text-indigo-400 ring-1 ring-white/10 group-hover:ring-indigo-500/30">
-                  {React.cloneElement(feature.icon as React.ReactElement, { className: "w-7 h-7 md:w-8 md:h-8" })}
-                </div>
-                <h3 className="text-xl md:text-2xl font-black text-white mb-4 tracking-tight">{feature.title}</h3>
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed font-medium">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+          {FEATURES_DATA.map((feature, idx) => (
+            <FeatureCard
+              key={`feature-${idx}`}
+              icon={feature.icon}
+              title={t(`features.items.${feature.key}.title`)}
+              description={t(`features.items.${feature.key}.description`)}
+              shadowColor={shadowColor}
+              borderColor={borderColor}
+            />
           ))}
         </div>
       </div>
     </section>
+  );
+};
+
+/**
+ * Reusable Feature Card Component
+ * 
+ * Props:
+ * - icon: React element for the feature icon
+ * - title: Feature title
+ * - description: Feature description
+ * - shadowColor: 3D shadow color
+ * - borderColor: 3D border color
+ */
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  shadowColor: string;
+  borderColor: string;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  icon,
+  title,
+  description,
+  shadowColor,
+  borderColor,
+}) => {
+  return (
+    <Card3D
+      borderColor={borderColor}
+      shadowColor={shadowColor}
+      className="p-4 sm:p-5 md:p-6 lg:p-8 group hover:-translate-y-1 transition-transform duration-300"
+    >
+      <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+        {/* Icon Container */}
+        <div className="flex items-start">
+          <Icon3D variant="primary" size="md">
+            {React.isValidElement(icon) && React.cloneElement(icon, {
+              className: 'w-5 sm:w-6 h-5 sm:h-6 text-white',
+            } as any)}
+          </Icon3D>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1">
+          <h3 className="text-base sm:text-lg md:text-xl font-black text-white mb-2 sm:mb-3 leading-tight">
+            {title}
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-medium">
+            {description}
+          </p>
+        </div>
+      </div>
+    </Card3D>
   );
 };
 

@@ -1,0 +1,22 @@
+{
+  "title_all": "All",
+  "title_partial": "Your",
+  "title_selected": "Selected",
+  "title_highlight": "Curators",
+  "description_all": "Our team members conduct weekly sessions.",
+  "description_partial": "Select your second curator as well.",
+  "description_both": "These curators will help you grow.",
+  "select_buddy": "Select Buddy",
+  "select_main": "Select Main Buddy",
+  "select_startup": "Select Startup Buddy",
+  "select_description": "Choose specialists that suit you.",
+  "select_main_desc": "Select buddy for main direction.",
+  "select_startup_desc": "Select buddy for Startup direction.",
+  "view_details": "View details",
+  "select_button": "Select",
+  "main_buddy": "Main Buddy",
+  "startup_buddy": "Startup Buddy",
+  "empty_title": "Curators unavailable",
+  "empty_description": "There are currently no active curators in the system. New specialists will be added soon.",
+  "empty_notice": "Admission process is ongoing"
+}

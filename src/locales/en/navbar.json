@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Services",
+    "team": "Curators",
+    "contact": "Contact",
+    "stats": "Statistics",
+    "monitoring": "Monitoring",
+    "users": "Users",
+    "requests": "Requests",
+    "seasons": "Seasons",
+    "messages": "Messages",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "login": "Sign In",
+    "signup": "Sign Up"
+  }
+}

@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './styles/3d-design.css';
 import './styles/buddy-design.css';
+import './styles/scroll-reveal.css';
 
 // React ilovasini HTML dagi 'root' elementiga ulaymiz
 const container = document.getElementById('root');

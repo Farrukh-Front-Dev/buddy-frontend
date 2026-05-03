@@ -3,9 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, LogOut, LogIn, UserCircle } from 'lucide-react';
 import { Home, Layout, Users, Mail, Activity, Zap, ShieldAlert, Calendar, Bell } from 'lucide-react';
 import { Page, UserData } from '../../../types';
+import { useTranslation } from '../../../hooks/useTranslation';
+import LanguageSwitcher from '../../common/LanguageSwitcher/LanguageSwitcher';
 
 interface NavLink {
   name: string;
+  translationKey: string;
   id: Page;
   tab?: string;
   icon: React.ReactNode;
@@ -34,33 +37,37 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
   onSignup,
   onLogout,
 }) => {
+  const { t } = useTranslation();
+  const shadowColor = 'rgb(168, 85, 247)';
+  const borderColor = 'rgb(79, 70, 229)';
+
   const getNavLinks = (): NavLink[] => {
     if (!user) {
       return [
-        { name: 'Asosiy', id: 'home', icon: <Home className="w-4 h-4" /> },
-        { name: 'Xizmatlar', id: 'features', icon: <Layout className="w-4 h-4" /> },
-        { name: 'Kuratorlar', id: 'team', icon: <Users className="w-4 h-4" /> },
-        { name: 'Bog\'lanish', id: 'contact', icon: <Mail className="w-4 h-4" /> },
+        { name: 'Home', translationKey: 'nav.home', id: 'home', icon: <Home className="w-5 h-5" /> },
+        { name: 'Features', translationKey: 'nav.features', id: 'features', icon: <Layout className="w-5 h-5" /> },
+        { name: 'Team', translationKey: 'nav.team', id: 'team', icon: <Users className="w-5 h-5" /> },
+        { name: 'Contact', translationKey: 'nav.contact', id: 'contact', icon: <Mail className="w-5 h-5" /> },
       ];
     }
 
     if (user.role === 'admin') {
       return [
-        { name: 'Stats', id: 'admin', tab: 'stats', icon: <Activity className="w-4 h-4" /> },
-        { name: 'Monitoring', id: 'admin', tab: 'monitoring', icon: <Zap className="w-4 h-4" /> },
-        { name: 'Kuratorlar', id: 'team', icon: <Users className="w-4 h-4" /> },
-        { name: 'Users', id: 'admin', tab: 'users', icon: <Users className="w-4 h-4" /> },
-        { name: 'Requests', id: 'admin', tab: 'requests', icon: <ShieldAlert className="w-4 h-4" /> },
-        { name: 'Seasons', id: 'admin', tab: 'seasons', icon: <Calendar className="w-4 h-4" /> },
-        { name: 'Messages', id: 'admin', tab: 'messages', icon: <Mail className="w-4 h-4" /> },
+        { name: 'Stats', translationKey: 'nav.stats', id: 'admin', tab: 'stats', icon: <Activity className="w-5 h-5" /> },
+        { name: 'Monitoring', translationKey: 'nav.monitoring', id: 'admin', tab: 'monitoring', icon: <Zap className="w-5 h-5" /> },
+        { name: 'Team', translationKey: 'nav.team', id: 'team', icon: <Users className="w-5 h-5" /> },
+        { name: 'Users', translationKey: 'nav.users', id: 'admin', tab: 'users', icon: <Users className="w-5 h-5" /> },
+        { name: 'Requests', translationKey: 'nav.requests', id: 'admin', tab: 'requests', icon: <ShieldAlert className="w-5 h-5" /> },
+        { name: 'Seasons', translationKey: 'nav.seasons', id: 'admin', tab: 'seasons', icon: <Calendar className="w-5 h-5" /> },
+        { name: 'Messages', translationKey: 'nav.messages', id: 'admin', tab: 'messages', icon: <Mail className="w-5 h-5" /> },
       ];
     }
 
     return [
-      { name: 'Monitoring', id: 'dashboard', tab: 'panel', icon: <Activity className="w-4 h-4" /> },
-      { name: 'Kuratorlar', id: 'team', icon: <Users className="w-4 h-4" /> },
-      { name: 'Profil', id: 'dashboard', tab: 'profile', icon: <UserCircle className="w-4 h-4" /> },
-      { name: 'Bildirishnomalar', id: 'dashboard', tab: 'notifications', icon: <Bell className="w-4 h-4" /> },
+      { name: 'Monitoring', translationKey: 'nav.monitoring', id: 'dashboard', tab: 'panel', icon: <Activity className="w-5 h-5" /> },
+      { name: 'Team', translationKey: 'nav.team', id: 'team', icon: <Users className="w-5 h-5" /> },
+      { name: 'Profile', translationKey: 'nav.profile', id: 'dashboard', tab: 'profile', icon: <UserCircle className="w-5 h-5" /> },
+      { name: 'Notifications', translationKey: 'nav.notifications', id: 'dashboard', tab: 'notifications', icon: <Bell className="w-5 h-5" /> },
     ];
   };
 
@@ -74,16 +81,30 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 
   return (
     <>
-      <div className="lg:hidden flex items-center space-x-2">
+      <div className="lg:hidden flex items-center gap-2.5">
         {user && (
-          <div className="flex items-center space-x-3 px-3 py-1.5 bg-white/5 rounded-xl border border-white/5">
-            <UserCircle className="w-4 h-4 text-purple-400" />
-            <span className="text-[11px] font-bold text-white">{user.name}</span>
+          <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-900 rounded-lg border-2 border-indigo-600"
+            style={{
+              boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+            }}
+          >
+            <UserCircle className="w-5 h-5 text-indigo-400 shrink-0" />
+            <span className="text-[11px] font-bold text-white truncate max-w-[100px]">{user.name}</span>
           </div>
         )}
         <button
           onClick={onToggle}
-          className="p-2.5 md:p-3 bg-white/10 rounded-xl text-white transition-colors border border-white/20 shadow-lg active:scale-90"
+          className="p-3 bg-slate-900 rounded-lg text-white transition-all border-2 active:scale-90"
+          style={{
+            borderColor: borderColor,
+            boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = `1px 1px 0px 0px ${shadowColor}`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = `2px 2px 0px 0px ${shadowColor}`;
+          }}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -95,9 +116,13 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="lg:hidden bg-[#0f0f12] absolute top-full left-0 right-0 m-4 py-6 px-4 border border-white/20 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] animate-in fade-in slide-in-from-top-4 duration-300"
+            className="lg:hidden bg-slate-900 absolute top-full left-0 right-0 m-4 py-6 px-4 rounded-2xl animate-in fade-in slide-in-from-top-4 duration-300"
+            style={{
+              border: `2px solid ${borderColor}`,
+              boxShadow: `4px 4px 0px 0px ${shadowColor}`,
+            }}
           >
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <button
                   key={`${link.id}-${link.name}`}
@@ -105,25 +130,30 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
                     onLinkClick(link.id, link.tab);
                     onToggle();
                   }}
-                  className={`flex items-center space-x-4 p-5 rounded-2xl text-lg font-black tracking-tight transition-all relative ${
-                    isActive(link) ? 'text-white' : 'text-slate-400'
+                  className={`flex items-center gap-3 p-3.5 rounded-lg text-sm font-bold tracking-tight transition-all border-2 ${
+                    isActive(link) 
+                      ? 'text-white bg-slate-800' 
+                      : 'text-slate-400 bg-transparent border-transparent hover:bg-slate-800/50'
                   }`}
+                  style={isActive(link) ? {
+                    borderColor: borderColor,
+                    boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+                  } : {}}
                 >
-                  {isActive(link) && (
-                    <motion.div
-                      layoutId="nav-mobile-active"
-                      className="absolute inset-0 bg-indigo-600/20 border border-indigo-500/20 rounded-2xl -z-10"
-                      transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <div className={isActive(link) ? 'text-indigo-400' : 'text-slate-500'}>
+                  <div className={isActive(link) ? 'text-indigo-400 shrink-0' : 'text-slate-500 shrink-0'}>
                     {link.icon}
                   </div>
-                  <span>{link.name}</span>
+                  <span>{t(link.translationKey, link.name)}</span>
                 </button>
               ))}
 
-              <div className="h-px bg-white/10 my-4 mx-2"></div>
+              <div className="h-px bg-white/10 my-2 mx-2"></div>
+
+              <div className="flex justify-center py-2">
+                <LanguageSwitcher />
+              </div>
+
+              <div className="h-px bg-white/10 my-2 mx-2"></div>
 
               {user ? (
                 <button
@@ -131,21 +161,27 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
                     onLogout();
                     onToggle();
                   }}
-                  className="w-full py-5 bg-red-500/10 text-red-400 font-black rounded-2xl border border-red-500/20 flex items-center justify-center space-x-3 active:scale-95 transition-transform"
+                  className="w-full py-3.5 bg-slate-800 text-red-400 font-bold rounded-lg border-2 border-red-500 flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                  style={{
+                    boxShadow: `2px 2px 0px 0px rgb(244, 63, 94)`,
+                  }}
                 >
                   <LogOut className="w-5 h-5" />
-                  <span>Chiqish ({user.name})</span>
+                  <span>{t('nav.logout', 'Sign Out')}</span>
                 </button>
               ) : (
-                <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="grid grid-cols-2 gap-2.5 pt-2">
                   <button
                     onClick={() => {
                       onLogin();
                       onToggle();
                     }}
-                    className="py-5 bg-white/5 text-white font-black rounded-2xl border border-white/10 active:scale-95 transition-transform"
+                    className="py-3.5 bg-slate-800 text-white font-bold rounded-lg border-2 border-indigo-600 active:scale-95 transition-transform text-sm"
+                    style={{
+                      boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+                    }}
                   >
-                    Kirish
+                    {t('nav.login', 'Sign In')}
                   </button>
                   {isRegistrationOpen && (
                     <button
@@ -153,9 +189,12 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
                         onSignup();
                         onToggle();
                       }}
-                      className="py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black rounded-2xl shadow-lg active:scale-95 transition-transform"
+                      className="py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-lg border-2 border-indigo-500 active:scale-95 transition-transform text-sm"
+                      style={{
+                        boxShadow: `2px 2px 0px 0px ${shadowColor}`,
+                      }}
                     >
-                      Ro'yxatdan o'tish
+                      {t('nav.signup', 'Sign Up')}
                     </button>
                   )}
                 </div>

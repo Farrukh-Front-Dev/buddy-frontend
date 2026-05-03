@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Page, UserData } from '../../../types';
-import { useTranslation } from '../../../hooks/useTranslation';
 import NavbarLogo from './NavbarLogo';
 import NavbarLinks from './NavbarLinks';
 import NavbarAuth from './NavbarAuth';
@@ -28,7 +27,6 @@ const Navbar: React.FC<NavbarProps> = ({
   isRegistrationOpen = true,
   unreadCount = 0,
 }) => {
-  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
@@ -58,10 +56,10 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 backdrop-blur-md ${
           isScrolled || isMenuOpen
-            ? 'bg-[#0a0a0c] border-b border-white/10 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.8)]'
-            : 'bg-transparent py-4 md:py-6'
+            ? 'bg-gradient-to-b from-black/60 via-black/40 to-black/20 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.8)]'
+            : 'bg-gradient-to-b from-black/40 via-black/20 to-transparent py-4 md:py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

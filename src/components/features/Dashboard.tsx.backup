@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import { UserData, StudentProgress, WeeklyHighlight, Season, Notification } from '../../types';
 import CustomDropdown from './CustomDropdown';
+import Card3D from '../common/Card3D/Card3D';
+import Button3D from '../common/Button3D/Button3D';
 
 interface DashboardProps {
    user: UserData | null;

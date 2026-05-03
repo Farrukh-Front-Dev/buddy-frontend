@@ -1,0 +1,97 @@
+{
+  "tabs": {
+    "panel": "Panel",
+    "profile": "Profile",
+    "notifications": "Notifications"
+  },
+  "panel": {
+    "title": "Monitoring Panel",
+    "week": "Week",
+    "season": "Season",
+    "add_plan": "Add Plan",
+    "no_students": "No students found",
+    "meeting_day": "Meeting Day",
+    "weekly_goal": "Weekly Goal",
+    "difficulty": "Difficulty",
+    "solution": "Solution",
+    "status": "Status",
+    "attended": "Attended",
+    "not_attended": "Not Attended",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "upload_photo": "Upload Photo",
+    "no_photos": "No photos"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "save_profile": "Save",
+    "cancel": "Cancel",
+    "name": "Name",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "field": "Specialization",
+    "bio": "Bio",
+    "field_description": "Field Description",
+    "motivation_quote": "Motivation Quote",
+    "skills": "Skills",
+    "social_links": "Social Links",
+    "add_link": "Add Link",
+    "upload_avatar": "Upload Avatar",
+    "role": "Role",
+    "status": "Status",
+    "joined": "Joined",
+    "assigned_curator": "Assigned Curator",
+    "startup_curator": "StartUp Curator",
+    "assigned_students": "Assigned Students",
+    "no_curator": "No curator",
+    "no_students": "No students"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "mark_all_read": "Mark all as read",
+    "no_notifications": "No notifications",
+    "unread": "Unread",
+    "read": "Read",
+    "new": "New"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "not_done": "Not Done",
+    "waiting": "Waiting"
+  },
+  "roles": {
+    "admin": "Admin",
+    "curator": "Curator",
+    "student": "Student"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "upload": "Upload",
+    "download": "Download",
+    "view": "View",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back"
+  },
+  "messages": {
+    "saving": "Saving...",
+    "saved": "Saved",
+    "error": "An error occurred",
+    "success": "Success",
+    "loading": "Loading...",
+    "no_data": "No data",
+    "confirm_delete": "Confirm deletion?",
+    "unsaved_changes": "You have unsaved changes"
+  }
+}

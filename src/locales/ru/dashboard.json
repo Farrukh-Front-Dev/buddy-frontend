@@ -1,0 +1,97 @@
+{
+  "tabs": {
+    "panel": "Панель",
+    "profile": "Профиль",
+    "notifications": "Уведомления"
+  },
+  "panel": {
+    "title": "Панель мониторинга",
+    "week": "Неделя",
+    "season": "Сезон",
+    "add_plan": "Добавить план",
+    "no_students": "Студенты не найдены",
+    "meeting_day": "День встречи",
+    "weekly_goal": "Недельная цель",
+    "difficulty": "Сложность",
+    "solution": "Решение",
+    "status": "Статус",
+    "attended": "Присутствовал",
+    "not_attended": "Не присутствовал",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "upload_photo": "Загрузить фото",
+    "no_photos": "Нет фотографий"
+  },
+  "profile": {
+    "title": "Профиль",
+    "edit_profile": "Редактировать профиль",
+    "save_profile": "Сохранить",
+    "cancel": "Отмена",
+    "name": "Имя",
+    "username": "Имя пользователя",
+    "email": "Email",
+    "password": "Пароль",
+    "field": "Специализация",
+    "bio": "Биография",
+    "field_description": "Описание области",
+    "motivation_quote": "Мотивационная цитата",
+    "skills": "Навыки",
+    "social_links": "Социальные сети",
+    "add_link": "Добавить ссылку",
+    "upload_avatar": "Загрузить аватар",
+    "role": "Роль",
+    "status": "Статус",
+    "joined": "Присоединился",
+    "assigned_curator": "Назначенный куратор",
+    "startup_curator": "StartUp куратор",
+    "assigned_students": "Назначенные студенты",
+    "no_curator": "Нет куратора",
+    "no_students": "Нет студентов"
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "mark_all_read": "Отметить все как прочитанные",
+    "no_notifications": "Нет уведомлений",
+    "unread": "Непрочитанные",
+    "read": "Прочитанные",
+    "new": "Новые"
+  },
+  "status": {
+    "active": "Активный",
+    "inactive": "Неактивный",
+    "pending": "В ожидании",
+    "completed": "Завершено",
+    "in_progress": "В процессе",
+    "not_done": "Не выполнено",
+    "waiting": "Ожидание"
+  },
+  "roles": {
+    "admin": "Администратор",
+    "curator": "Куратор",
+    "student": "Студент"
+  },
+  "actions": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "upload": "Загрузить",
+    "download": "Скачать",
+    "view": "Просмотр",
+    "close": "Закрыть",
+    "confirm": "Подтвердить",
+    "back": "Назад"
+  },
+  "messages": {
+    "saving": "Сохранение...",
+    "saved": "Сохранено",
+    "error": "Произошла ошибка",
+    "success": "Успешно",
+    "loading": "Загрузка...",
+    "no_data": "Нет данных",
+    "confirm_delete": "Подтвердить удаление?",
+    "unsaved_changes": "Есть несохраненные изменения"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "tabs": {
+    "panel": "Panel",
+    "profile": "Profil",
+    "notifications": "Xabarlar"
+  },
+  "panel": {
+    "title": "Monitoring Panel",
+    "week": "Hafta",
+    "season": "Mavsum",
+    "add_plan": "Reja qo'shish",
+    "no_students": "O'quvchilar topilmadi",
+    "meeting_day": "Uchrashuv kuni",
+    "weekly_goal": "Haftalik maqsad",
+    "difficulty": "Qiyinchilik",
+    "solution": "Yechim",
+    "status": "Holat",
+    "attended": "Qatnashdi",
+    "not_attended": "Qatnashmadi",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "upload_photo": "Rasm yuklash",
+    "no_photos": "Rasmlar yo'q"
+  },
+  "profile": {
+    "title": "Profil",
+    "edit_profile": "Profilni tahrirlash",
+    "save_profile": "Saqlash",
+    "cancel": "Bekor qilish",
+    "name": "Ism",
+    "username": "Username",
+    "email": "Email",
+    "password": "Parol",
+    "field": "Mutaxassislik",
+    "bio": "Bio",
+    "field_description": "Soha tavsifi",
+    "motivation_quote": "Motivatsion iqtibos",
+    "skills": "Ko'nikmalar",
+    "social_links": "Ijtimoiy tarmoqlar",
+    "add_link": "Link qo'shish",
+    "upload_avatar": "Avatar yuklash",
+    "role": "Rol",
+    "status": "Holat",
+    "joined": "Qo'shildi",
+    "assigned_curator": "Biriktirilgan kurator",
+    "startup_curator": "StartUp kurator",
+    "assigned_students": "Biriktirilgan o'quvchilar",
+    "no_curator": "Kurator yo'q",
+    "no_students": "O'quvchilar yo'q"
+  },
+  "notifications": {
+    "title": "Xabarlar",
+    "mark_all_read": "Hammasini o'qilgan deb belgilash",
+    "no_notifications": "Xabarlar yo'q",
+    "unread": "O'qilmagan",
+    "read": "O'qilgan",
+    "new": "Yangi"
+  },
+  "status": {
+    "active": "Faol",
+    "inactive": "Nofaol",
+    "pending": "Kutilmoqda",
+    "completed": "Hal qilindi",
+    "in_progress": "Bajarilmoqda",
+    "not_done": "Bajarmadi",
+    "waiting": "Kutilmoqda"
+  },
+  "roles": {
+    "admin": "Admin",
+    "curator": "Kurator",
+    "student": "O'quvchi"
+  },
+  "actions": {
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "upload": "Yuklash",
+    "download": "Yuklab olish",
+    "view": "Ko'rish",
+    "close": "Yopish",
+    "confirm": "Tasdiqlash",
+    "back": "Orqaga"
+  },
+  "messages": {
+    "saving": "Saqlanmoqda...",
+    "saved": "Saqlandi",
+    "error": "Xatolik yuz berdi",
+    "success": "Muvaffaqiyatli",
+    "loading": "Yuklanmoqda...",
+    "no_data": "Ma'lumot yo'q",
+    "confirm_delete": "O'chirishni tasdiqlaysizmi?",
+    "unsaved_changes": "Saqlanmagan o'zgarishlar bor"
+  }
+}

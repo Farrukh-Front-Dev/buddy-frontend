@@ -1,0 +1,22 @@
+{
+  "title_all": "Все",
+  "title_partial": "Ваши",
+  "title_selected": "Выбранные",
+  "title_highlight": "Кураторы",
+  "description_all": "Наши члены команды проводят еженедельные сессии.",
+  "description_partial": "Выберите также второго куратора.",
+  "description_both": "Эти кураторы помогут вам в развитии.",
+  "select_buddy": "Выберите Buddy",
+  "select_main": "Выберите основного Buddy",
+  "select_startup": "Выберите Startup Buddy",
+  "select_description": "Выберите подходящих специалистов.",
+  "select_main_desc": "Выберите buddy для основного направления.",
+  "select_startup_desc": "Выберите buddy для направления Startup.",
+  "view_details": "Подробнее",
+  "select_button": "Выбрать",
+  "main_buddy": "Основной Buddy",
+  "startup_buddy": "Startup Buddy",
+  "empty_title": "Кураторы недоступны",
+  "empty_description": "В системе сейчас нет активных кураторов. Новые специалисты будут добавлены в ближайшее время.",
+  "empty_notice": "Процесс набора продолжается"
+}

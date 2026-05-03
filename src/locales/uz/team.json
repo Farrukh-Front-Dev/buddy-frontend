@@ -1,0 +1,22 @@
+{
+  "title_all": "Barcha",
+  "title_partial": "Sizning",
+  "title_selected": "Tanlangan",
+  "title_highlight": "Kuratorlar",
+  "description_all": "Bizning jamoa a'zolari har haftalik sessiyalarni boshqarishadi.",
+  "description_partial": "Ikkinchi kuratoringizni ham tanlang.",
+  "description_both": "Ushbu kuratorlar sizning o'sishingizda yordam berishadi.",
+  "select_buddy": "Buddy Tanlang",
+  "select_main": "Asosiy Buddy Tanlang",
+  "select_startup": "Startup Buddy Tanlang",
+  "select_description": "Sizga mos keladigan mutaxassislarni tanlang.",
+  "select_main_desc": "Asosiy yo'nalish uchun buddy tanlang.",
+  "select_startup_desc": "Startup yo'nalishi uchun buddy tanlang.",
+  "view_details": "Batafsil",
+  "select_button": "Tanlash",
+  "main_buddy": "Asosiy Buddy",
+  "startup_buddy": "Startup Buddy",
+  "empty_title": "Kuratorlar mavjud emas",
+  "empty_description": "Tizimda hozirda faol kuratorlar yo'q. Yaqin kunlarda yangi mutaxassislar qo'shiladi.",
+  "empty_notice": "Qabul jarayoni davom etmoqda"
+}

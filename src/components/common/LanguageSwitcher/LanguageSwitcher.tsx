@@ -17,16 +17,34 @@ const LanguageSwitcher: React.FC = () => {
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
 
+  const handleToggle = () => {
+    setIsOpen(prev => !prev);
+  };
+
+  const handleLanguageChange = (lang: Language) => {
+    setLanguage(lang);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="relative">
-      {isOpen && (
-        <div className="fixed inset-0 z-40 cursor-default" onClick={() => setIsOpen(false)}></div>
-      )}
+    <div className="relative z-50">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+            className="fixed inset-0 z-40 cursor-default" 
+            onClick={() => setIsOpen(false)}
+          ></motion.div>
+        )}
+      </AnimatePresence>
       
       {/* Circle Toggle Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center transition-all duration-200 hover:translate-x-[1px] hover:translate-y-[1px] font-black text-xs text-indigo-400"
+        onClick={handleToggle}
+        className="w-11 h-11 rounded-full bg-slate-900 flex items-center justify-center transition-all duration-200 hover:translate-x-[1px] hover:translate-y-[1px] font-black text-sm text-indigo-400 relative z-50"
         style={{
           border: `2px solid ${borderColor}`,
           boxShadow: `2px 2px 0px 0px ${shadowColor}`,
@@ -49,7 +67,7 @@ const LanguageSwitcher: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -5 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-3 w-48 bg-slate-900 rounded-2xl overflow-hidden"
+            className="absolute right-0 top-full mt-3 w-52 bg-slate-900 rounded-2xl overflow-hidden z-50"
             style={{
               border: `2px solid ${borderColor}`,
               boxShadow: `4px 4px 0px 0px ${shadowColor}`,
@@ -60,10 +78,9 @@ const LanguageSwitcher: React.FC = () => {
                 <button
                   key={lang.code}
                   onClick={() => {
-                    setLanguage(lang.code);
-                    setIsOpen(false);
+                    handleLanguageChange(lang.code);
                   }}
-                  className={`flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                  className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-bold transition-all ${
                     language === lang.code
                       ? 'bg-indigo-600/30 text-indigo-300 border border-indigo-500/30'
                       : 'text-slate-400 hover:bg-white/5 hover:text-white'
@@ -71,7 +88,7 @@ const LanguageSwitcher: React.FC = () => {
                 >
                   <span>{lang.fullName}</span>
                   {language === lang.code && (
-                    <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
                   )}
                 </button>
               ))}

@@ -1,95 +1,209 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, ArrowRight } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
+import Card3D from '../common/Card3D/Card3D';
+import Button3D from '../common/Button3D/Button3D';
+import Icon3D from '../common/Icon3D/Icon3D';
 
-const Contact: React.FC = () => {
+/**
+ * Contact Info Card Component - Reusable
+ */
+interface ContactInfoCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description: string;
+  shadowColor: string;
+  borderColor: string;
+}
+
+const ContactInfoCard: React.FC<ContactInfoCardProps> = ({
+  icon,
+  title,
+  value,
+  description,
+  shadowColor,
+  borderColor,
+}) => (
+  <Card3D
+    borderColor={borderColor}
+    shadowColor={shadowColor}
+    className="p-4 sm:p-5 md:p-6 lg:p-8 group hover:-translate-y-1 transition-transform duration-300"
+  >
+    <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+      <Icon3D variant="primary" size="md">
+        {React.cloneElement(icon as React.ReactElement, {
+          className: 'w-5 sm:w-6 h-5 sm:h-6 text-white',
+        } as any)}
+      </Icon3D>
+
+      <div>
+        <h4 className="text-base sm:text-lg md:text-xl font-black text-white mb-1 sm:mb-2">
+          {title}
+        </h4>
+        <p className="text-indigo-400 font-bold text-sm sm:text-base group-hover:text-indigo-300 transition-colors">
+          {value}
+        </p>
+      </div>
+
+      <p className="text-slate-400 text-xs sm:text-sm font-medium leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </Card3D>
+);
+
+/**
+ * Contact Form Component - Reusable
+ */
+interface ContactFormProps {
+  shadowColor: string;
+  borderColor: string;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) => {
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setFormData({ name: '', email: '', message: '' });
+    }, 1000);
+  };
+
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[#0a0a0c] relative overflow-hidden">
-      {/* Dynamic Background Effects */}
-      <div className="absolute top-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-purple-600/10 rounded-full blur-[100px] md:blur-[150px] -z-10 animate-pulse"></div>
-      <div className="absolute bottom-0 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/10 rounded-full blur-[80px] md:blur-[120px] -z-10"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 md:mb-24">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 rounded-xl mb-6 border border-purple-500/20">
-            <MessageCircle className="w-4 h-4 text-purple-400" />
-            <span className="text-[10px] md:text-xs font-black text-purple-300 uppercase tracking-widest">Bog'lanish</span>
+    <Card3D
+      borderColor={borderColor}
+      shadowColor={shadowColor}
+      className="p-4 sm:p-6 md:p-8 lg:p-12"
+    >
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
+        {/* Name and Email Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+          <div className="space-y-2 sm:space-y-3">
+            <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+              {t('contact.form.name', 'To\'liq Ismingiz')}
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all placeholder:text-slate-600 font-medium"
+              placeholder={t('contact.form.name_placeholder', 'Asadbek Aliyev')}
+              required
+            />
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-8 text-white tracking-tighter leading-[0.9]">
-            Savollaringiz <br />
-            <span className="bg-gradient-to-br from-[#60a5fa] to-[#a855f7] bg-clip-text text-transparent italic">Bormi?</span>
+          <div className="space-y-2 sm:space-y-3">
+            <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+              {t('contact.form.email', 'Email Manzilingiz')}
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all placeholder:text-slate-600 font-medium"
+              placeholder={t('contact.form.email_placeholder', 'example@buddy.uz')}
+              required
+            />
+          </div>
+        </div>
+
+        {/* Message */}
+        <div className="space-y-2 sm:space-y-3">
+          <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+            {t('contact.form.message', 'Xabaringiz Mazmuni')}
+          </label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all h-32 sm:h-40 md:h-48 resize-none placeholder:text-slate-600 font-medium"
+            placeholder={t('contact.form.message_placeholder', 'Qanday masalada yordam bera olamiz?')}
+            required
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <Button3D
+          variant="primary"
+          className="w-full py-3 sm:py-3.5 md:py-4 px-6 text-xs sm:text-sm md:text-base font-bold flex items-center justify-center gap-2"
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+        >
+          <Send className="w-4 sm:w-5 h-4 sm:h-5" />
+          <span>{isSubmitting ? t('contact.form.sending', 'Yuborilmoqda...') : t('contact.form.send', 'Xabar Yuborish')}</span>
+        </Button3D>
+      </form>
+    </Card3D>
+  );
+};
+
+/**
+ * Contact Section - Get in Touch
+ */
+const Contact: React.FC = () => {
+  const { t } = useTranslation();
+  const shadowColor = 'rgb(168, 85, 247)';
+  const borderColor = 'rgb(79, 70, 229)';
+
+  return (
+    <section id="contact" className="py-16 sm:py-20 md:py-28 lg:py-36 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
+            {t('contact.title', 'Savollaringiz')} <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+              {t('contact.title_highlight', 'Bormi?')}
+            </span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-lg font-medium leading-relaxed">
-            Bizning jamoaga qo'shilish yoki hamkorlik qilish bo'yicha har qanday savollaringizni kutamiz. Har bir murojaat biz uchun muhim.
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+            {t('contact.description', 'Bizning jamoaga qo\'shilish yoki hamkorlik qilish bo\'yicha har qanday savollaringizni kutamiz.')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 md:gap-12 items-start">
-          {/* Contact Details Side */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="group p-8 bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[2rem] hover:bg-white/[0.07] hover:border-indigo-500/30 transition-all duration-500">
-              <div className="w-14 h-14 bg-indigo-600/20 rounded-2xl flex items-center justify-center mb-6 text-indigo-400 group-hover:scale-110 transition-transform ring-1 ring-white/10">
-                <Mail className="w-6 h-6" />
-              </div>
-              <h4 className="text-xl font-black text-white mb-2 tracking-tight">Elektron Pochta</h4>
-              <p className="text-slate-400 font-bold group-hover:text-indigo-400 transition-colors">hello@buddyteam.uz</p>
-              <div className="mt-4 pt-4 border-t border-white/5 flex items-center text-[10px] font-black uppercase tracking-widest text-slate-600 group-hover:text-slate-400 transition-colors">
-                24/7 Aloqada <ArrowRight className="w-3 h-3 ml-2" />
-              </div>
-            </div>
+        {/* Contact Grid */}
+        <div className="grid lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 items-start">
+          {/* Contact Info Cards */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-5 md:space-y-6">
+            <ContactInfoCard
+              icon={<Mail className="w-6 h-6" />}
+              title={t('contact.email_title', 'Elektron Pochta')}
+              value="hello@buddyteam.uz"
+              description={t('contact.email_desc', '24/7 Aloqada')}
+              shadowColor={shadowColor}
+              borderColor={borderColor}
+            />
 
-            <div className="group p-8 bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[2rem] hover:bg-white/[0.07] hover:border-purple-500/30 transition-all duration-500">
-              <div className="w-14 h-14 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-6 text-purple-400 group-hover:scale-110 transition-transform ring-1 ring-white/10">
-                <MessageCircle className="w-6 h-6" />
-              </div>
-              <h4 className="text-xl font-black text-white mb-2 tracking-tight">Telegram Kanal</h4>
-              <p className="text-slate-400 font-bold group-hover:text-purple-400 transition-colors">@buddyteam_official</p>
-              <div className="mt-4 pt-4 border-t border-white/5 flex items-center text-[10px] font-black uppercase tracking-widest text-slate-600 group-hover:text-slate-400 transition-colors">
-                Jamoa Yangiliklari <ArrowRight className="w-3 h-3 ml-2" />
-              </div>
-            </div>
+            <ContactInfoCard
+              icon={<MessageCircle className="w-6 h-6" />}
+              title={t('contact.telegram_title', 'Telegram Kanal')}
+              value="@buddyteam_official"
+              description={t('contact.telegram_desc', 'Jamoa Yangiliklari')}
+              shadowColor={shadowColor}
+              borderColor={borderColor}
+            />
           </div>
 
-          {/* Premium Contact Form */}
+          {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="p-8 md:p-12 bg-white/[0.03] backdrop-blur-2xl border border-white/5 rounded-[3rem] shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 to-purple-600"></div>
-
-              <form className="space-y-8">
-                <div className="grid sm:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 ml-1">To'liq Ismingiz</label>
-                    <input
-                      type="text"
-                      className="w-full bg-white/[0.05] border border-white/10 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] transition-all placeholder:text-slate-700 font-bold"
-                      placeholder="Asadbek Aliyev"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 ml-1">Email Manzilingiz</label>
-                    <input
-                      type="email"
-                      className="w-full bg-white/[0.05] border border-white/10 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-purple-500 focus:bg-white/[0.08] transition-all placeholder:text-slate-700 font-bold"
-                      placeholder="example@buddy.uz"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 ml-1">Xabaringiz Mazmuni</label>
-                  <textarea
-                    className="w-full bg-white/[0.05] border border-white/10 rounded-2xl py-4 px-6 text-white text-sm focus:outline-none focus:border-purple-500 focus:bg-white/[0.08] transition-all h-48 resize-none placeholder:text-slate-700 font-bold"
-                    placeholder="Qanday masalada yordam bera olamiz?"
-                  ></textarea>
-                </div>
-
-                <button className="w-full py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-black rounded-2xl shadow-[0_20px_40px_rgba(79,70,229,0.3)] flex items-center justify-center space-x-4 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/btn overflow-hidden relative">
-                  <div className="absolute inset-0 bg-white/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
-                  <Send className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                  <span className="relative z-10 text-xs md:text-sm tracking-widest uppercase">Xabar Yuborish</span>
-                </button>
-              </form>
-            </div>
+            <ContactForm shadowColor={shadowColor} borderColor={borderColor} />
           </div>
         </div>
       </div>

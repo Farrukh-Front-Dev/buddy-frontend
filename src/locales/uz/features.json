@@ -1,0 +1,23 @@
+{
+  "title": "Bizning",
+  "title_highlight": "Ustunliklarimiz",
+  "description": "Jamoamiz har bir talaba bilan individual ishlash va sifatli natija ko'rsatishni asosiy maqsad deb biladi.",
+  "items": {
+    "innovation": {
+      "title": "Innovatsiya",
+      "description": "Eng so'nggi texnologiyalar bilan zamonaviy yechimlar."
+    },
+    "teamwork": {
+      "title": "Jamoaviy Ish",
+      "description": "Buddy komandasi har bir a'zosining hissasi qadrlidir."
+    },
+    "speed": {
+      "title": "Tezkorlik",
+      "description": "Sifatli natijani tez muddatlarda yetkazib beramiz."
+    },
+    "global": {
+      "title": "Global Qamrov",
+      "description": "Loyihalarimiz dunyo bo'ylab foydalanuvchilarga xizmat qiladi."
+    }
+  }
+}

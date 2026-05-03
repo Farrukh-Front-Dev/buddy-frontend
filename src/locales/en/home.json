@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "badge": "Friendship • Collaboration • Mutual Support",
+    "title": "Buddy",
+    "subtitle": "System",
+    "description": "Even if we're scared, let's do it together. Develop yourself through friendship with our curators.",
+    "cta_primary": "View Curators",
+    "cta_secondary": "Learn More",
+    "stats": {
+      "students": "Students",
+      "students_count": "150+",
+      "curators": "Curators",
+      "curators_count": "12",
+      "lessons": "Lessons",
+      "lessons_count": "500+"
+    }
+  },
+  "about": {
+    "badge": "Who Are We?",
+    "title": "Buddy — It's Not Just",
+    "title_highlight": "a Team, It's a Family.",
+    "description": "Buddy Team was founded in 2025 on the foundation of mutual trust and friendship. The cat and dog in our logo are not a coincidence — they represent how opposite characters can be friends with a single goal.",
+    "stats": {
+      "graduates": "Graduates",
+      "graduates_count": "50+",
+      "curators": "Curators",
+      "curators_count": "12"
+    },
+    "mission": "Our Mission",
+    "mission_desc": "Help every person find their potential through friendly support.",
+    "friendship": "Friendship First",
+    "friendship_desc": "We have friend-buddy relationships, not teacher-student relationships.",
+    "communication": "Open Communication",
+    "communication_desc": "Every problem is solved together with AI and team analysis.",
+    "cta": "Join Now",
+    "registration_closed": "Registration for this season is closed"
+  },
+  "cta": {
+    "title": "Ready?",
+    "description": "Visit our sections to learn about our team and curator schedules. It's time to grow through friendship!",
+    "cta_curators": "View Curators",
+    "cta_signup": "Become a Student",
+    "cta_login": "Sign In",
+    "stats_title": "Buddy Statistics",
+    "stats": {
+      "students": "Students",
+      "students_count": "150+",
+      "curators": "Curators",
+      "curators_count": "12",
+      "lessons": "Lessons",
+      "lessons_count": "500+"
+    },
+    "growth": "20% growth per month"
+  },
+  "footer": {
+    "tagline": "Grow through friendship. Together we achieve better results.",
+    "nav_title": "Navigation",
+    "nav_home": "Home",
+    "nav_features": "Services",
+    "nav_team": "Curators",
+    "nav_contact": "Contact",
+    "contact_title": "Contact",
+    "address": "Samarkand, Ibn Sino Street 17A",
+    "copyright": "© {year} Buddy System. All rights reserved."
+  }
+}
