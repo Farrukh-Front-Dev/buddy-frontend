@@ -33,9 +33,30 @@ interface LanguageProviderProps {
 }
 
 const translations: Record<Language, Record<string, any>> = {
-  uz: { ...homeUz, ...navbarUz, ...dashboardUz, ...featuresUz, ...authUz, ...teamUz },
-  ru: { ...homeRu, ...navbarRu, ...dashboardRu, ...featuresRu, ...authRu, ...teamRu },
-  en: { ...homeEn, ...navbarEn, ...dashboardEn, ...featuresEn, ...authEn, ...teamEn },
+  uz: { 
+    home: homeUz,
+    navbar: navbarUz,
+    dashboard: dashboardUz,
+    features: featuresUz,
+    auth: authUz,
+    team: teamUz
+  },
+  ru: { 
+    home: homeRu,
+    navbar: navbarRu,
+    dashboard: dashboardRu,
+    features: featuresRu,
+    auth: authRu,
+    team: teamRu
+  },
+  en: { 
+    home: homeEn,
+    navbar: navbarEn,
+    dashboard: dashboardEn,
+    features: featuresEn,
+    auth: authEn,
+    team: teamEn
+  },
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {

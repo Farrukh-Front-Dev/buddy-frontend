@@ -15,7 +15,7 @@ import Icon3D from '../common/Icon3D/Icon3D';
  * - Multi-language support (UZ, RU, EN)
  */
 const Features: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('features');
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
 
@@ -25,13 +25,13 @@ const Features: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
           <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
-            {t('features.title')} <br className="hidden sm:block" />
+            {t('title')} <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              {t('features.title_highlight')}
+              {t('title_highlight')}
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
-            {t('features.description')}
+            {t('description')}
           </p>
         </div>
 
@@ -41,8 +41,8 @@ const Features: React.FC = () => {
             <FeatureCard
               key={`feature-${idx}`}
               icon={feature.icon}
-              title={t(`features.items.${feature.key}.title`)}
-              description={t(`features.items.${feature.key}.description`)}
+              title={t(`items.${feature.key}.title`)}
+              description={t(`items.${feature.key}.description`)}
               shadowColor={shadowColor}
               borderColor={borderColor}
             />
