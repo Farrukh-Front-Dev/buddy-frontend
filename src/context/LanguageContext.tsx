@@ -48,7 +48,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   });
 
-  // Save to localStorage when language changes
   useEffect(() => {
     try {
       localStorage.setItem('buddy_language', language);
