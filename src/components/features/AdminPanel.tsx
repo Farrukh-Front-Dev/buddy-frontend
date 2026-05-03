@@ -11,7 +11,6 @@ import {
   ExternalLink, Fingerprint, CalendarDays, Zap, Quote, Link2, Send, Info, ChevronDown, Loader2, TrendingUp, TrendingDown, Calendar, Edit2, Download
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie, AreaChart, Area } from 'recharts';
-import * as XLSX from 'xlsx';
 import ExcelJS from 'exceljs';
 import { UserData, StudentProgress, Season, Notification } from '../../types';
 import CustomDropdown from './CustomDropdown';
