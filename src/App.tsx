@@ -11,7 +11,7 @@ import Team from './components/features/Team';
 import Contact from './components/features/Contact';
 import AuthPage from './components/features/auth/AuthPage';
 import Dashboard from './components/features/dashboard';
-import AdminPanel from './components/features/AdminPanel';
+import AdminPanel from './components/features/admin/AdminPanel';
 import Footer from './components/layout/Footer';
 import { StudentProgress, WeeklyHighlight, TeamMember, Season, Notification, Page, UserData } from './types';
 import api, { WS_URL, MEDIA_BASE_URL } from './services/api/client';
@@ -871,15 +871,18 @@ const App: React.FC = () => {
       
       {/* Content Layer */}
       <div className="relative z-10">
-        <Navbar
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        onAuthNavigate={handleNavigateToAuth}
-        user={user}
-        onLogout={handleLogout}
-        isRegistrationOpen={isRegistrationOpen}
-        unreadCount={filteredNotifications.filter(n => !n.isRead).length}
-      />
+        {/* Hide Navbar on admin page */}
+        {currentPage !== 'admin' && (
+          <Navbar
+            currentPage={currentPage}
+            onNavigate={handleNavigate}
+            onAuthNavigate={handleNavigateToAuth}
+            user={user}
+            onLogout={handleLogout}
+            isRegistrationOpen={isRegistrationOpen}
+            unreadCount={filteredNotifications.filter(n => !n.isRead).length}
+          />
+        )}
       
       {/* GLOBAL SAVING OVERLAY LOADER */}
       {isDataSaving && (
@@ -1019,6 +1022,7 @@ const App: React.FC = () => {
                   onMarkAsRead={handleMarkNotificationAsRead}
                   onMarkAllRead={() => handleMarkNotificationAsRead('all')}
                   isDataSaving={isDataSaving}
+                  onLogout={handleLogout}
                 />
               </div>
             ) : user ? (
@@ -1046,7 +1050,8 @@ const App: React.FC = () => {
           <Route path="*" element={user ? <Navigate to="/dashboard" replace /> : <Navigate to="/" replace />} />
         </Routes>
       </main>
-      <Footer onNavigate={handleNavigate} />
+      {/* Hide Footer on admin page */}
+      {currentPage !== 'admin' && <Footer onNavigate={handleNavigate} />}
       </div>
     </div>
     </LanguageProvider>

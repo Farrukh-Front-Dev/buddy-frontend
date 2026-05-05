@@ -13,6 +13,7 @@
     "profile": "Profile",
     "notifications": "Notifications",
     "login": "Sign In",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "logout": "Sign Out"
   }
 }

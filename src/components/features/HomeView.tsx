@@ -3,6 +3,7 @@ import React from 'react';
 import Hero from './Hero';
 import { Page, UserData } from '../../types';
 import { Shield, Users, Heart, Star, Zap, MessageSquare, ArrowRight, Lock } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface HomeViewProps {
   onNavigate: (page: Page) => void;
@@ -12,6 +13,8 @@ interface HomeViewProps {
 }
 
 const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onAuthNavigate, isRegistrationOpen = true, user }) => {
+  const { t } = useTranslation('home');
+  
   return (
     <div className="bg-[#0a0a0c]">
       <Hero user={user} onNavigate={onNavigate} />
@@ -23,23 +26,23 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onAuthNavigate, isRegis
             <div className="order-2 lg:order-1 text-center lg:text-left">
               <div className="inline-flex items-center space-x-2 px-3 md:px-4 py-1.5 md:py-2 bg-indigo-500/10 rounded-xl mb-6 border border-indigo-500/20">
                 <Shield className="w-4 h-4 text-indigo-400 shrink-0" />
-                <span className="text-[10px] md:text-xs font-black text-indigo-300 uppercase tracking-widest">Biz kimmiz?</span>
+                <span className="text-[10px] md:text-xs font-black text-indigo-300 uppercase tracking-widest">{t('about.badge')}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-5 md:mb-8 text-white leading-tight">
-                Buddy — Bu shunchaki jamoa emas, <br className="hidden sm:block" />
-                <span className="bg-gradient-to-br from-[#60a5fa] to-[#a855f7] bg-clip-text text-transparent">bu Oila.</span>
+                {t('about.title')} <br className="hidden sm:block" />
+                <span className="bg-gradient-to-br from-[#60a5fa] to-[#a855f7] bg-clip-text text-transparent">{t('about.title_highlight')}</span>
               </h2>
               <p className="text-sm md:text-lg text-slate-400 leading-relaxed mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0">
-                Buddy Team 2025-yilda o'zaro ishonch va do'stlik poydevorida tashkil topgan. Bizning logotipimizdagi mushuk va kuchukcha tasviri tasodifiy emas — u qarama-qarshi xarakterlar ham bitta maqsad yo'lida do'st bo'la olishini anglatadi.
+                {t('about.description')}
               </p>
               <div className="grid grid-cols-2 gap-3 md:gap-6 mb-7 md:mb-10 max-w-xs sm:max-w-sm mx-auto lg:mx-0">
                 <div className="p-4 md:p-6 bg-white/5 backdrop-blur-[12px] border border-white/10 rounded-2xl md:rounded-3xl border border-white/5 shadow-xl">
-                  <h4 className="text-xl md:text-2xl font-black text-white mb-1">50+</h4>
-                  <p className="text-[8px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">Bitiruvchilar</p>
+                  <h4 className="text-xl md:text-2xl font-black text-white mb-1">{t('about.stats.graduates_count')}</h4>
+                  <p className="text-[8px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">{t('about.stats.graduates')}</p>
                 </div>
                 <div className="p-4 md:p-6 bg-white/5 backdrop-blur-[12px] border border-white/10 rounded-2xl md:rounded-3xl border border-white/5 shadow-xl">
-                  <h4 className="text-xl md:text-2xl font-black text-white mb-1">12</h4>
-                  <p className="text-[8px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">Barcha Kuratorlar</p>
+                  <h4 className="text-xl md:text-2xl font-black text-white mb-1">{t('about.stats.curators_count')}</h4>
+                  <p className="text-[8px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">{t('about.stats.curators')}</p>
                 </div>
               </div>
 
@@ -48,13 +51,13 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onAuthNavigate, isRegis
                   onClick={() => onAuthNavigate('signup')}
                   className="flex items-center justify-center lg:justify-start space-x-3 text-indigo-400 font-black hover:text-indigo-300 transition-colors group w-full lg:w-auto"
                 >
-                  <span>Hoziroq bizga qo'shiling</span>
+                  <span>{t('about.cta')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </button>
               ) : (
                 <div className="flex items-center justify-center lg:justify-start gap-3 text-slate-500 font-bold italic">
                   <Lock className="w-4 h-4" />
-                  <span>Mavsumga qabul yopilgan</span>
+                  <span>{t('about.registration_closed')}</span>
                 </div>
               )}
             </div>
@@ -80,18 +83,18 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onAuthNavigate, isRegis
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-8 mb-16 md:mb-24 lg:mb-32">
             {[
               {
-                title: "Bizning Missiya",
-                desc: "Har bir insonga o'z potensialini topishda do'stona ko'mak berish.",
+                title: t('about.mission'),
+                desc: t('about.mission_desc'),
                 icon: <Zap className="w-6 h-6 text-yellow-400" />
               },
               {
-                title: "Do'stlik Ustuvor",
-                desc: "Bizda usto-shogird emas, do'st-buddy munosabatlari rivojlangan.",
+                title: t('about.friendship'),
+                desc: t('about.friendship_desc'),
                 icon: <Heart className="w-6 h-6 text-pink-400" />
               },
               {
-                title: "Ochiq Muloqot",
-                desc: "Har bir muammo birgalikda, AI va jamoaviy tahlil bilan hal etiladi.",
+                title: t('about.communication'),
+                desc: t('about.communication_desc'),
                 icon: <MessageSquare className="w-6 h-6 text-blue-400" />
               }
             ].map((card, i) => (
@@ -109,30 +112,30 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onAuthNavigate, isRegis
           <div className="text-center p-6 sm:p-10 md:p-16 bg-white/5 backdrop-blur-[12px] border border-white/10 rounded-3xl md:rounded-[60px] border border-white/5 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10 -z-10"></div>
             <Zap className="w-9 h-9 md:w-12 md:h-12 text-purple-400 mx-auto mb-4 md:mb-6" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 md:mb-6">Tayyormisiz?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 md:mb-6">{t('cta.title')}</h2>
             <p className="text-sm md:text-base text-slate-400 mb-7 md:mb-10 max-w-xl mx-auto font-medium">
-              Bizning jamoa va kuratorlar ish rejasi bilan tanishish uchun bo'limlarga o'ting.
+              {t('cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-6">
               <button
                 onClick={() => onNavigate('team')}
                 className="w-full sm:w-auto px-8 md:px-10 py-3.5 md:py-4 bg-white text-[#0a0a0c] font-black rounded-xl md:rounded-2xl hover:scale-105 transition-transform text-xs md:text-sm active:scale-95"
               >
-                Kuratorlarni Ko'rish
+                {t('cta.cta_curators')}
               </button>
               {isRegistrationOpen ? (
                 <button
                   onClick={() => onAuthNavigate('signup')}
                   className="w-full sm:w-auto px-8 md:px-10 py-3.5 md:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black rounded-xl md:rounded-2xl shadow-xl shadow-indigo-600/20 hover:scale-105 transition-transform text-xs md:text-sm active:scale-95"
                 >
-                  O'quvchi bo'lish
+                  {t('cta.cta_signup')}
                 </button>
               ) : (
                 <button
                   onClick={() => onAuthNavigate('login')}
                   className="w-full sm:w-auto px-8 md:px-10 py-3.5 md:py-4 bg-white/5 text-slate-400 font-black rounded-xl md:rounded-2xl border border-white/5 transition-transform text-xs md:text-sm active:scale-95"
                 >
-                  Tizimga kirish
+                  {t('cta.cta_login')}
                 </button>
               )}
             </div>

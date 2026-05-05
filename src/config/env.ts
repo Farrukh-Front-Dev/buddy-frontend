@@ -5,8 +5,8 @@
 
 export const ENV = {
   // API Configuration
-  API_URL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api/v1/',
-  MEDIA_BASE_URL: import.meta.env.VITE_MEDIA_BASE_URL || 'http://127.0.0.1:8000',
+  API_URL: import.meta.env.VITE_API_URL || 'https://buddy-backend-v1-1.onrender.com/api/v1/',
+  MEDIA_BASE_URL: import.meta.env.VITE_MEDIA_BASE_URL || 'https://buddy-backend-v1-1.onrender.com',
   
   // Gemini API
   GEMINI_API_KEY: import.meta.env.VITE_GEMINI_API_KEY || '',

@@ -27,7 +27,7 @@ interface HeroSectionProps {
  * - Floating decorative icons
  */
 const HeroSection: React.FC<HeroSectionProps> = ({ user, onNavigate }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   
   // Scroll reveal refs
   const headingRef = useScrollReveal({ threshold: 0.2, delay: 0.1 });

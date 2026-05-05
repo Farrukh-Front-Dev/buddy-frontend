@@ -17,6 +17,9 @@ import authEn from '../locales/en/auth.json';
 import teamUz from '../locales/uz/team.json';
 import teamRu from '../locales/ru/team.json';
 import teamEn from '../locales/en/team.json';
+import contactUz from '../locales/uz/contact.json';
+import contactRu from '../locales/ru/contact.json';
+import contactEn from '../locales/en/contact.json';
 
 export type Language = 'uz' | 'ru' | 'en';
 
@@ -39,7 +42,8 @@ const translations: Record<Language, Record<string, any>> = {
     dashboard: dashboardUz,
     features: featuresUz,
     auth: authUz,
-    team: teamUz
+    team: teamUz,
+    contact: contactUz
   },
   ru: { 
     home: homeRu,
@@ -47,7 +51,8 @@ const translations: Record<Language, Record<string, any>> = {
     dashboard: dashboardRu,
     features: featuresRu,
     auth: authRu,
-    team: teamRu
+    team: teamRu,
+    contact: contactRu
   },
   en: { 
     home: homeEn,
@@ -55,7 +60,8 @@ const translations: Record<Language, Record<string, any>> = {
     dashboard: dashboardEn,
     features: featuresEn,
     auth: authEn,
-    team: teamEn
+    team: teamEn,
+    contact: contactEn
   },
 };
 

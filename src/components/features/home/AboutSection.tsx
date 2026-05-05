@@ -24,7 +24,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   isRegistrationOpen = true,
   onAuthNavigate,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
   

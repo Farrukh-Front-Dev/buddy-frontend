@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, ArrowRight } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Card3D from '../common/Card3D/Card3D';
 import Button3D from '../common/Button3D/Button3D';
 import Icon3D from '../common/Icon3D/Icon3D';
@@ -62,7 +63,7 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -96,7 +97,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
           <div className="space-y-2 sm:space-y-3">
             <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
-              {t('contact.form.name', 'To\'liq Ismingiz')}
+              {t('form.name')}
             </label>
             <input
               type="text"
@@ -104,13 +105,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
               value={formData.name}
               onChange={handleChange}
               className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all placeholder:text-slate-600 font-medium"
-              placeholder={t('contact.form.name_placeholder', 'Asadbek Aliyev')}
+              placeholder={t('form.name_placeholder')}
               required
             />
           </div>
           <div className="space-y-2 sm:space-y-3">
             <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
-              {t('contact.form.email', 'Email Manzilingiz')}
+              {t('form.email')}
             </label>
             <input
               type="email"
@@ -118,7 +119,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
               value={formData.email}
               onChange={handleChange}
               className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all placeholder:text-slate-600 font-medium"
-              placeholder={t('contact.form.email_placeholder', 'example@buddy.uz')}
+              placeholder={t('form.email_placeholder')}
               required
             />
           </div>
@@ -127,14 +128,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
         {/* Message */}
         <div className="space-y-2 sm:space-y-3">
           <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
-            {t('contact.form.message', 'Xabaringiz Mazmuni')}
+            {t('form.message')}
           </label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             className="w-full bg-white/5 border border-white/10 rounded-lg py-2.5 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6 text-white text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition-all h-32 sm:h-40 md:h-48 resize-none placeholder:text-slate-600 font-medium"
-            placeholder={t('contact.form.message_placeholder', 'Qanday masalada yordam bera olamiz?')}
+            placeholder={t('form.message_placeholder')}
             required
           ></textarea>
         </div>
@@ -147,7 +148,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
           disabled={isSubmitting}
         >
           <Send className="w-4 sm:w-5 h-4 sm:h-5" />
-          <span>{isSubmitting ? t('contact.form.sending', 'Yuborilmoqda...') : t('contact.form.send', 'Xabar Yuborish')}</span>
+          <span>{isSubmitting ? t('form.sending') : t('form.send')}</span>
         </Button3D>
       </form>
     </Card3D>
@@ -156,53 +157,79 @@ const ContactForm: React.FC<ContactFormProps> = ({ shadowColor, borderColor }) =
 
 /**
  * Contact Section - Get in Touch
+ * 
+ * Features:
+ * - Contact form with validation
+ * - Contact info cards
+ * - Scroll reveal animations
+ * - 3D card effects
+ * - Responsive layout
+ * - Multi-language support
  */
 const Contact: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('contact');
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
+
+  // Scroll reveal refs
+  const headingRef = useScrollReveal({ threshold: 0.2, delay: 0.1 });
+  const descRef = useScrollReveal({ threshold: 0.2, delay: 0.2 });
+  const cardsRef = useScrollReveal({ threshold: 0.2, delay: 0.1 });
+  const formRef = useScrollReveal({ threshold: 0.2, delay: 0.3 });
 
   return (
     <section id="contact" className="py-16 sm:py-20 md:py-28 lg:py-36 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
-            {t('contact.title', 'Savollaringiz')} <br className="hidden sm:block" />
+          <h2 
+            ref={headingRef}
+            className="scroll-reveal-fade-up text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white"
+          >
+            {t('title')} <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              {t('contact.title_highlight', 'Bormi?')}
+              {t('title_highlight')}
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
-            {t('contact.description', 'Bizning jamoaga qo\'shilish yoki hamkorlik qilish bo\'yicha har qanday savollaringizni kutamiz.')}
+          <p 
+            ref={descRef}
+            className="scroll-reveal-fade-up text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed"
+          >
+            {t('description')}
           </p>
         </div>
 
         {/* Contact Grid */}
         <div className="grid lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 items-start">
           {/* Contact Info Cards */}
-          <div className="lg:col-span-1 space-y-4 sm:space-y-5 md:space-y-6">
+          <div 
+            ref={cardsRef}
+            className="scroll-reveal-stagger lg:col-span-1 space-y-4 sm:space-y-5 md:space-y-6"
+          >
             <ContactInfoCard
               icon={<Mail className="w-6 h-6" />}
-              title={t('contact.email_title', 'Elektron Pochta')}
+              title={t('email_title')}
               value="hello@buddyteam.uz"
-              description={t('contact.email_desc', '24/7 Aloqada')}
+              description={t('email_desc')}
               shadowColor={shadowColor}
               borderColor={borderColor}
             />
 
             <ContactInfoCard
               icon={<MessageCircle className="w-6 h-6" />}
-              title={t('contact.telegram_title', 'Telegram Kanal')}
+              title={t('telegram_title')}
               value="@buddyteam_official"
-              description={t('contact.telegram_desc', 'Jamoa Yangiliklari')}
+              description={t('telegram_desc')}
               shadowColor={shadowColor}
               borderColor={borderColor}
             />
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <div 
+            ref={formRef}
+            className="scroll-reveal-fade-left lg:col-span-2"
+          >
             <ContactForm shadowColor={shadowColor} borderColor={borderColor} />
           </div>
         </div>

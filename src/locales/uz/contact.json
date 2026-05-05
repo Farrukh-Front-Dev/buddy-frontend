@@ -1,0 +1,19 @@
+{
+  "title": "Savollaringiz",
+  "title_highlight": "Bormi?",
+  "description": "Bizning jamoaga qo'shilish yoki hamkorlik qilish bo'yicha har qanday savollaringizni kutamiz.",
+  "email_title": "Elektron Pochta",
+  "email_desc": "24/7 Aloqada",
+  "telegram_title": "Telegram Kanal",
+  "telegram_desc": "Jamoa Yangiliklari",
+  "form": {
+    "name": "To'liq Ismingiz",
+    "name_placeholder": "Asadbek Aliyev",
+    "email": "Email Manzilingiz",
+    "email_placeholder": "example@buddy.uz",
+    "message": "Xabaringiz Mazmuni",
+    "message_placeholder": "Qanday masalada yordam bera olamiz?",
+    "send": "Xabar Yuborish",
+    "sending": "Yuborilmoqda..."
+  }
+}

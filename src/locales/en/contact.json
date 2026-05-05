@@ -1,0 +1,19 @@
+{
+  "title": "Have Any",
+  "title_highlight": "Questions?",
+  "description": "We welcome any questions about joining our team or collaboration.",
+  "email_title": "Email Address",
+  "email_desc": "Available 24/7",
+  "telegram_title": "Telegram Channel",
+  "telegram_desc": "Team Updates",
+  "form": {
+    "name": "Your Full Name",
+    "name_placeholder": "John Doe",
+    "email": "Your Email",
+    "email_placeholder": "example@buddy.uz",
+    "message": "Message Content",
+    "message_placeholder": "How can we help you?",
+    "send": "Send Message",
+    "sending": "Sending..."
+  }
+}

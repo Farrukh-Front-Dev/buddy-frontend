@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { TEAM_MEMBERS } from '../../config/constants';
 import { UserCheck, Search, Users, UserX, AlertCircle, Link2 } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import CuratorDetail from './CuratorDetail';
 import Card3D from '../common/Card3D/Card3D';
 import { TeamMember, StudentProgress, WeeklyHighlight, Season, UserData } from '../../types';
@@ -179,6 +180,14 @@ const EmptyState: React.FC = () => {
 
 /**
  * Team Section - Curator Showcase
+ * 
+ * Features:
+ * - Dynamic curator cards with 3D effects
+ * - Scroll reveal animations
+ * - Role-based filtering
+ * - Curator selection for students
+ * - Responsive grid layout
+ * - Multi-language support
  */
 const Team: React.FC<TeamProps> = ({
   user,
@@ -194,6 +203,12 @@ const Team: React.FC<TeamProps> = ({
   const [selectedCurator, setSelectedCurator] = useState<TeamMember | null>(null);
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
+
+  // Scroll reveal refs
+  const headingRef = useScrollReveal({ threshold: 0.2, delay: 0.1 });
+  const descRef = useScrollReveal({ threshold: 0.2, delay: 0.2 });
+  const noticeRef = useScrollReveal({ threshold: 0.2, delay: 0.3 });
+  const cardsRef = useScrollReveal({ threshold: 0.1, delay: 0.1 });
 
   const members = customMembers || TEAM_MEMBERS;
 
@@ -221,14 +236,20 @@ const Team: React.FC<TeamProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
+          <h2 
+            ref={headingRef}
+            className="scroll-reveal-fade-up text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white"
+          >
             {isStudentWithBothCurators ? t('title_selected', 'Tanlangan') : isStudentWithCurator ? t('title_partial', 'Sizning') : t('title_all', 'Barcha')} <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
               {t('title_highlight', 'Kuratorlar')}
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+          <p 
+            ref={descRef}
+            className="scroll-reveal-fade-up text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed"
+          >
             {isStudentWithBothCurators
               ? t('description_both', 'Ushbu kuratorlar sizning o\'sishingizda yordam berishadi.')
               : isStudentWithCurator
@@ -250,26 +271,31 @@ const Team: React.FC<TeamProps> = ({
                 shadowColor={shadowColor}
                 className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 p-4 sm:p-6 md:p-8 text-center"
               >
-                <Users className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 text-indigo-400 mx-auto mb-3 sm:mb-4 md:mb-6" />
-                <h4 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 uppercase tracking-tight">
-                  {!user?.assignedCuratorId && !user?.startupCuratorId
-                    ? t('select_buddy', 'Buddy Tanlang')
-                    : !user?.assignedCuratorId
-                    ? t('select_main', 'Asosiy Buddy Tanlang')
-                    : t('select_startup', 'Startup Buddy Tanlang')}
-                </h4>
-                <p className="text-slate-400 text-xs sm:text-sm md:text-base font-medium">
-                  {!user?.assignedCuratorId && !user?.startupCuratorId
-                    ? t('select_description', 'Sizga mos keladigan mutaxassislarni tanlang.')
-                    : !user?.assignedCuratorId
-                    ? t('select_main_desc', 'Asosiy yo\'nalish uchun buddy tanlang.')
-                    : t('select_startup_desc', 'Startup yo\'nalishi uchun buddy tanlang.')}
-                </p>
+                <div ref={noticeRef} className="scroll-reveal-zoom">
+                  <Users className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 text-indigo-400 mx-auto mb-3 sm:mb-4 md:mb-6" />
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 uppercase tracking-tight">
+                    {!user?.assignedCuratorId && !user?.startupCuratorId
+                      ? t('select_buddy', 'Buddy Tanlang')
+                      : !user?.assignedCuratorId
+                      ? t('select_main', 'Asosiy Buddy Tanlang')
+                      : t('select_startup', 'Startup Buddy Tanlang')}
+                  </h4>
+                  <p className="text-slate-400 text-xs sm:text-sm md:text-base font-medium">
+                    {!user?.assignedCuratorId && !user?.startupCuratorId
+                      ? t('select_description', 'Sizga mos keladigan mutaxassislarni tanlang.')
+                      : !user?.assignedCuratorId
+                      ? t('select_main_desc', 'Asosiy yo\'nalish uchun buddy tanlang.')
+                      : t('select_startup_desc', 'Startup yo\'nalishi uchun buddy tanlang.')}
+                  </p>
+                </div>
               </Card3D>
             )}
 
             {displayedMembers.length > 0 ? (
-              <div className={`grid grid-cols-1 ${displayedMembers.length === 1 ? 'sm:max-w-sm sm:mx-auto' : 'sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-5 md:gap-6 lg:gap-8`}>
+              <div 
+                ref={cardsRef}
+                className={`scroll-reveal-stagger grid grid-cols-1 ${displayedMembers.length === 1 ? 'sm:max-w-sm sm:mx-auto' : 'sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-5 md:gap-6 lg:gap-8`}
+              >
                 {displayedMembers.map((member) => (
                   <TeamMemberCard
                     key={member.id}

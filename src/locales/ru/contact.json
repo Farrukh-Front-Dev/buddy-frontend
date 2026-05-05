@@ -1,0 +1,19 @@
+{
+  "title": "Есть",
+  "title_highlight": "Вопросы?",
+  "description": "Мы ждем любых ваших вопросов о присоединении к нашей команде или сотрудничестве.",
+  "email_title": "Электронная Почта",
+  "email_desc": "На связи 24/7",
+  "telegram_title": "Telegram Канал",
+  "telegram_desc": "Новости Команды",
+  "form": {
+    "name": "Ваше Полное Имя",
+    "name_placeholder": "Иван Иванов",
+    "email": "Ваш Email",
+    "email_placeholder": "example@buddy.uz",
+    "message": "Содержание Сообщения",
+    "message_placeholder": "В чем мы можем помочь?",
+    "send": "Отправить Сообщение",
+    "sending": "Отправляется..."
+  }
+}

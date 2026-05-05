@@ -10,7 +10,7 @@ interface NavbarAuthProps {
 }
 
 const NavbarAuth: React.FC<NavbarAuthProps> = ({ isRegistrationOpen, onLogin, onSignup }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('navbar');
 
   return (
     <div className="hidden lg:flex items-center gap-2.5">

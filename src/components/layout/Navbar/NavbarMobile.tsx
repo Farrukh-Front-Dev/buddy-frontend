@@ -37,7 +37,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
   onSignup,
   onLogout,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('navbar');
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
 

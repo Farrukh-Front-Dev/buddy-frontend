@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../../hooks/useTranslation';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { FEATURES_DATA } from '../../config/featuresData';
 import Card3D from '../common/Card3D/Card3D';
 import Icon3D from '../common/Icon3D/Icon3D';
@@ -11,6 +12,7 @@ import Icon3D from '../common/Icon3D/Icon3D';
  * - Section heading with gradient
  * - Feature cards with icons
  * - Hover animations and 3D styling
+ * - Scroll reveal animations
  * - Fully responsive grid layout
  * - Multi-language support (UZ, RU, EN)
  */
@@ -19,24 +21,38 @@ const Features: React.FC = () => {
   const shadowColor = 'rgb(168, 85, 247)';
   const borderColor = 'rgb(79, 70, 229)';
 
+  // Scroll reveal refs
+  const headingRef = useScrollReveal({ threshold: 0.2, delay: 0.1 });
+  const descRef = useScrollReveal({ threshold: 0.2, delay: 0.2 });
+  const cardsRef = useScrollReveal({ threshold: 0.1, delay: 0.1 });
+
   return (
     <section id="features" className="py-16 sm:py-20 md:py-28 lg:py-36 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white">
+          <h2 
+            ref={headingRef}
+            className="scroll-reveal-fade-up text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 md:mb-8 text-white"
+          >
             {t('title')} <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
               {t('title_highlight')}
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
+          <p 
+            ref={descRef}
+            className="scroll-reveal-fade-up text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed"
+          >
             {t('description')}
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+        <div 
+          ref={cardsRef}
+          className="scroll-reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
+        >
           {FEATURES_DATA.map((feature, idx) => (
             <FeatureCard
               key={`feature-${idx}`}

@@ -13,6 +13,7 @@
     "profile": "Profil",
     "notifications": "Bildirishnomalar",
     "login": "Kirish",
-    "signup": "Ro'yxatdan o'tish"
+    "signup": "Ro'yxatdan o'tish",
+    "logout": "Chiqish"
   }
 }
